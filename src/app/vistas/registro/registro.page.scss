@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+ion-content {
+  --background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),
+    url("/assets/comia.jpg") no-repeat center center / cover;
+  padding: 0;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 35vh;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  
+  h1, p ,h3{
+    color: white;
+    margin: 0; /* Elimina los márgenes */
+    padding: 5px;
+    line-height: 1.2; /* Agrega un espaciado vertical adecuado */
+  }
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 20px;
+  border-top-left-radius: 46px;
+  border-top-right-radius: 46px;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: -20px;
+}
+  
+  
+  
+  .form-input {
+    position: relative;
+    margin-bottom: 20px;
+  
+    ion-item {
+      padding-left: 0;
+    }
+  
+    ion-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: black;
+    }
+  
+    ion-label {
+      position: absolute;
+      left: 36px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
+      font-size: 0.8rem;
+      color: black;
+    }
+  
+    ion-input {
+      --padding-start: 36px;
+      font-size: 0.9rem;
+      color: black;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    ion-input[name="username"]:not(:placeholder-shown) + ion-label {
+      display: none;
+    }
+
+  }
+  
+  .action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  
+    ion-button {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 0.8rem;
+      color: blue;
+    }
+  }
+  

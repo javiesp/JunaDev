@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="logo-img ion-padding">
+      <img src="assets\icon\logotipojunaexpres.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="login-section ion-padding">
+    <h1 class="ion-text-center">Bienvenido a junaExpress!</h1>
+    <p>Inicia sesion para continuar</p>
+  </div>
+  <div class="login-form ion-padding">
+    <div class="form-input">
+      <ion-icon name="mail-outline"></ion-icon>
+
+      <!--Input-->
+      <ion-item>
+        <ion-label position="floating">email</ion-label>
+        <ion-input [(ngModel)]='email'></ion-input>
+      </ion-item>
+    </div>
+    <div class="form-input">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <ion-item>
+        <ion-label position="floating" >Password</ion-label>
+        <ion-input type="password" [(ngModel)]='password' ></ion-input>
+      </ion-item>
+    </div>
+    <div class="action-button ion-padding">
+      <ion-button size="large" class="login-button" (click)="login()">Iniciar sesión</ion-button>
+      <ion-button size="large" class="login-button" routerLink="/menu-principal">Menu</ion-button>
+      <p><a href="/contrasenia" >Olvidaste tu contraseña?</a></p>
+      <ion-button size="large" class="login-button" fill="outline"(click)="signup()" >Registro</ion-button>
+    </div>
+  </div>
+  <!-- commit main branch -->
+</ion-content>

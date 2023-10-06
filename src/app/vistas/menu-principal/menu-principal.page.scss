@@ -1,0 +1,109 @@
+ion-header{
+    ion-toolbar{
+      ion-avatar{
+        background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),;
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  
+  .avatar-title-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  
+  ion-content {
+      --background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),
+        url("/assets/comia.jpg") no-repeat center center / cover;
+      padding: 0;
+      font-family: 'Varela Round', sans-serif;
+    }
+  
+  ion-list{
+      --background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),
+  }
+  .image-container img {
+    border-radius: 10px; /* Borde redondeado, ajusta el valor según tu preferencia */
+  }
+  
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:white; 
+    text-align: center;
+    
+  }
+  
+  
+  /* swiper slides */
+  
+  swiper-container {
+    --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
+    --swiper-pagination-color: var(--ion-color-primary, #3880ff);
+    --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+    --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+    --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+  }
+  
+  swiper-slide {
+    display: flex;
+    position: relative;
+  
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  
+    width: 100%;
+    height: 100%;
+  
+    font-size: 18px;
+  
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  swiper-slide img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: 10px; 
+    padding: 10px;
+    border-radius: 15px;
+  }
+  
+  .topic {
+    margin-left: 10px; 
+    font-weight: bold;
+    color: #cccccc;
+  }
+  
+  .slide-comidas img{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: 10px; 
+    border-radius: 10px;
+  }
+  
+  .slide-comidas ion-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+  
+  ion-label {
+    font-weight: bold; 
+    font-size: 18px; 
+    margin-top: 10px; 
+    color: #cccccc;
+  }
