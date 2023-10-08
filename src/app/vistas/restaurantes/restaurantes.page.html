@@ -1,6 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>restaurantes</ion-title>
+  <ion-toolbar class="toolbar">
+    <div class="cont-ubicacion">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="auto">
+          <ion-avatar>
+            <ion-buttons>
+              <img src="assets/icon/isotipo-gray.png" alt="">
+            </ion-buttons>
+          </ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-title mode="md">
+            <ion-label>
+              <ion-text>Estás en</ion-text>
+              <p>
+                Santiago, Chile
+                <ion-icon color="dark" name="chevron-down-outline"></ion-icon>
+              </p>
+            </ion-label>
+          </ion-title>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-buttons>
+            <ion-button routerLink="/pedidos">
+              <ion-badge slot="end">&#9679;</ion-badge>
+              <ion-icon slot="icon-only" name="cart" color="dark"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="barra-busqueda ion-padding">
+      <ion-searchbar show-clear-button="always" clear-icon="close" (ionChange)="getItems($event)"></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -14,6 +46,7 @@
   
     <ion-card-content>
       {{ restaurante.descripcion }}
+      <ion-button fill="clear" expand="block" (click)="agregarAlCarrito(uid, restaurante, restaurante.nombre)">Agregar al carrito</ion-button>
     </ion-card-content>
     <ion-button fill="clear" expand="block" (click)="setOpen(true)">Ver menu</ion-button>
   </ion-card>
@@ -63,7 +96,7 @@
         <ion-icon name="home-outline"></ion-icon>
         Menú
       </ion-tab-button>
-      <ion-tab-button tab="Favoritos">
+      <ion-tab-button tab="Pedidos" routerLink="/pedidos">
         <ion-icon name="pizza-outline"></ion-icon>
         Pedidos
       </ion-tab-button>
