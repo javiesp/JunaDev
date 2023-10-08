@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment} from 'src/environments/environment';
-import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [AppComponent],
