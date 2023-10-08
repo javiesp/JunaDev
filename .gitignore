@@ -1,3 +1,4 @@
-# Auto detect text files and perform LF normalization
+# node
 node_modules/*
-angular/cache/*
+# cache 
+/.angular/cache
