@@ -25,4 +25,13 @@ export class FireserviceService {
     getDetails(data){
       return this.firestore.collection("users").doc(data.uid).valueChanges();
     }
+
+    async signOut() {
+      try {
+        await this.auth.signOut();
+      } catch (error) {
+        console.error('Error al cerrar la sesión:', error);
+        throw error;
+      }
+    }
 }

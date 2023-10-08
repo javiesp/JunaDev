@@ -54,19 +54,20 @@ ion-content {
       color: black;
     }
   
-    ion-label {
-      position:absolute;
+    ion-label:not(:placeholder-shown) {
+       
+      display: none;
+      position:static;
       left: 36px;
       top: 50%;
       transform: translateY(-50%);
       font-weight: bold;
       font-size: 0.8rem;
       color: black;
+      
     }
-    ion-input[name="username"]:not(:placeholder-shown) + ion-label {
-      display: none;
-    }
-  
+    
+
     ion-input {
       --padding-start: 36px;
       font-size: 0.9rem;
@@ -93,3 +94,4 @@ ion-content {
       color: blue;
     }
   }
+
