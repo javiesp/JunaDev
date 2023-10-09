@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { MenuPrincipalPage } from './vistas/menu-principal/menu-principal.page';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [
   {
@@ -47,6 +49,12 @@ const routes: Routes = [
     path: 'pedidos',
     loadChildren: () => import('./vistas/pedidos/pedidos.module').then( m => m.PedidosPageModule)
   },
+  {
+    path: 'cuenta',
+    loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+  },
+  
+
 ];
 
 

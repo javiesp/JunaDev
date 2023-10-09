@@ -11,11 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment} from 'src/environments/environment';
-import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
+  
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // BarcodeScanner
