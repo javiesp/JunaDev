@@ -16,8 +16,7 @@ export class PedidosPage implements OnInit {
       if (user) {
         this.uid = user.uid;
         console.log('uid usuario:', this.uid);
-        // Listar pedidos filtrados por el uid del usuario
-        this.db.list('CarritoPedidos/' + this.uid).valueChanges().subscribe((data: any[]) => {
+        this.db.list(`CarritoPedidos/${this.uid}`).valueChanges().subscribe((data: any[]) => {
           this.pedidos = data;
         });
       }
@@ -26,4 +25,16 @@ export class PedidosPage implements OnInit {
 
   ngOnInit() {
   }
+
+  eliminarPedidosDelUsuario(usuarioID: string) {
+    this.db.object(`CarritoPedidos/${usuarioID}`).remove()
+      .then(() => {
+        console.log('Pedidos del usuario eliminados exitosamente.');
+      })
+      .catch((error) => {
+        console.error('Error al eliminar los pedidos del usuario:', error);
+      });
+  }
+  
+
 }
