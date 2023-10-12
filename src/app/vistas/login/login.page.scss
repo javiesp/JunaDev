@@ -18,7 +18,7 @@ ion-content {
   padding: 0;
   margin: 0;
   
-  h1, p {
+  h1, p ,h3{
     color: white;
     margin: 0; /* Elimina los márgenes */
     padding: 5px;
@@ -54,20 +54,16 @@ ion-content {
       color: black;
     }
   
-    ion-label:not(:placeholder-shown) {
-       
-      display: none;
-      position:static;
+    ion-label {
+      position: absolute;
       left: 36px;
       top: 50%;
       transform: translateY(-50%);
       font-weight: bold;
       font-size: 0.8rem;
       color: black;
-      
     }
-    
-
+  
     ion-input {
       --padding-start: 36px;
       font-size: 0.9rem;
@@ -75,6 +71,10 @@ ion-content {
       border: none;
       background-color: rgba(255, 255, 255, 0.1);
     }
+    ion-input[name="username"]:not(:placeholder-shown) + ion-label {
+      display: none;
+    }
+
   }
   
   .action-button {
@@ -94,4 +94,4 @@ ion-content {
       color: blue;
     }
   }
-
+  

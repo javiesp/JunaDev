@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MenuPrincipalPage } from './vistas/menu-principal/menu-principal.page';
-import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+import { AngularFireAuthGuard, canActivate, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login', // Cambiado de 'home' a 'login'
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -23,40 +24,45 @@ const routes: Routes = [
   },
   {
     path: 'menu-principal',
-    loadChildren: () => import('./vistas/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule)
+    loadChildren: () => import('./vistas/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'usuario',
-    loadChildren: () => import('./vistas/usuario/usuario.module').then( m => m.UsuarioPageModule)
+    loadChildren: () => import('./vistas/usuario/usuario.module').then( m => m.UsuarioPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'scan-qr-pago',
-    loadChildren: () => import('./vistas/scan-qr-pago/scan-qr-pago.module').then( m => m.ScanQrPagoPageModule)
+    loadChildren: () => import('./vistas/scan-qr-pago/scan-qr-pago.module').then( m => m.ScanQrPagoPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'restaurantes',
-    loadChildren: () => import('./vistas/restaurantes/restaurantes.module').then( m => m.RestaurantesPageModule)
+    loadChildren: () => import('./vistas/restaurantes/restaurantes.module').then( m => m.RestaurantesPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'configuracion',
-    loadChildren: () => import('./vistas/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+    loadChildren: () => import('./vistas/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'carrito-compras',
-    loadChildren: () => import('./vistas/carrito-compras/carrito-compras.module').then( m => m.CarritoComprasPageModule)
+    loadChildren: () => import('./vistas/carrito-compras/carrito-compras.module').then( m => m.CarritoComprasPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'pedidos',
-    loadChildren: () => import('./vistas/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+    loadChildren: () => import('./vistas/pedidos/pedidos.module').then( m => m.PedidosPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'cuenta',
-    loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+    loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
-  
-
 ];
-
 
 @NgModule({
   imports: [
