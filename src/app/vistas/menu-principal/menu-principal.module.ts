@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPrincipalPageRoutingModule } from './menu-principal-routing.module';
 
 import { MenuPrincipalPage } from './menu-principal.page';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { MenuPrincipalPage } from './menu-principal.page';
     IonicModule,
     MenuPrincipalPageRoutingModule
   ],
-  declarations: [MenuPrincipalPage]
+  declarations: [MenuPrincipalPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MenuPrincipalPageModule {}
