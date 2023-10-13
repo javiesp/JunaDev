@@ -55,7 +55,7 @@ export class RestaurantesPage implements OnInit {
 
   async ionViewWillEnter() {
     const loading = await this.loadingController.create({
-      message: 'Cargando elementos...', // Mensaje que se mostrará
+      message: 'Cargando restaurantes...', // Mensaje que se mostrará
       duration: 1000 // Duración en milisegundos (ajusta según tus necesidades)
     });
     
