@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { v4 as uuidv4 } from 'uuid'; // Importa uuidv4
+import { LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-restaurantes',
@@ -15,8 +17,8 @@ export class RestaurantesPage implements OnInit {
   isModalOpen: boolean;
   uid: string;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
-    this.db.list('restaurantes').valueChanges().subscribe((data: any[]) => {
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private loadingController: LoadingController) {
+    /*this.db.list('restaurantes').valueChanges().subscribe((data: any[]) => {
       this.restaurantes = data;
     });
 
@@ -25,7 +27,7 @@ export class RestaurantesPage implements OnInit {
         this.uid = user.uid;
         console.log('uid usuario:', this.uid);
       }
-    });
+    });*/
   }
 
   // Función para generar un nuevo pedidoID
@@ -49,6 +51,27 @@ export class RestaurantesPage implements OnInit {
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+
+  async ionViewWillEnter() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando restaurantes...', // Mensaje que se mostrará
+      duration: 1000 // Duración en milisegundos (ajusta según tus necesidades)
+    });
+    
+    await loading.present();
+    
+    //Carga los elementos a listar
+    this.db.list('restaurantes').valueChanges().subscribe((data: any[]) => { //Busca la data y las guarda en this.restaurantes
+      this.restaurantes = data;
+    });
+
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.uid = user.uid;
+        console.log('uid usuario:', this.uid);
+      }
+    });
   }
 
   ngOnInit() {}
