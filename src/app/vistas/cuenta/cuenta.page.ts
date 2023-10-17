@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FireserviceService } from 'src/app/fireservice.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cuenta',
@@ -16,7 +17,8 @@ export class CuentaPage implements OnInit {
   constructor(
     public fireservice: FireserviceService,
     private router: Router,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -24,15 +26,36 @@ export class CuentaPage implements OnInit {
   }
 
   async logout() {
-    try {
-      await this.fireservice.signOut();
-      this.router.navigate(['/login']);
-      this.userEmail = '';
-      this.creationTime = '';
-    } catch (err) {
-      console.error(err);
-    }
+    const alert = await this.alertController.create({
+      header: 'Cerrar Sesión',
+      message: '¿Está seguro de que desea cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            // Cancelar la acción
+          }
+        },
+        {
+          text: 'Cerrar Sesión',
+          handler: async () => {
+            try {
+              await this.fireservice.signOut();
+              this.router.navigate(['/login']);
+              this.userEmail = '';
+              this.creationTime = '';
+            } catch (err) {
+              console.error(err);
+            }
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
+  
 
   async loadUserInfo() {
     try {
