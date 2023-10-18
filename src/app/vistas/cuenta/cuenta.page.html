@@ -22,7 +22,7 @@
         </ion-col>
         <ion-col size="auto">
           <ion-buttons>
-            <ion-button >
+            <ion-button routerLink="/configuracion">
               <ion-icon name="settings-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -44,6 +44,15 @@
         <ion-input type="email" [(ngModel)]="userEmail" disabled></ion-input>
       </ion-item>
 
+
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="username" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Apellido</ion-label>
+        <ion-input type="text" [(ngModel)]="apellido" disabled></ion-input>
+      </ion-item>
       <!-- Fecha de Registro -->
       <ion-item>
         <ion-label position="stacked">Fecha de Registro</ion-label>
@@ -51,7 +60,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-button expand="block" (click)="logout()" color="danger" fill="outline">Cerrar sesión</ion-button>
+  <!--<ion-button expand="block" (click)="logout()" color="danger" fill="outline">Cerrar sesión</ion-button>-->
 </ion-content>
 
 <footer class="footer">

@@ -12,7 +12,9 @@ import { AlertController } from '@ionic/angular';
 export class CuentaPage implements OnInit {
   userEmail: string;
   userName: string;
-  creationTime: string; // Agrega una propiedad para la fecha de creación
+  creationTime: string; 
+  username: string;
+
 
   constructor(
     public fireservice: FireserviceService,
@@ -45,6 +47,7 @@ export class CuentaPage implements OnInit {
               this.router.navigate(['/login']);
               this.userEmail = '';
               this.creationTime = '';
+              this.username = '';
             } catch (err) {
               console.error(err);
             }
@@ -63,6 +66,7 @@ export class CuentaPage implements OnInit {
       if (user) {
         this.userEmail = user.email;
         this.creationTime = user.metadata.creationTime; // Obtiene la fecha de creación
+        this.username = user.displayName;
         console.log(this.userEmail, this.creationTime)
       }
     } catch (err) {
