@@ -62,6 +62,13 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+   
+  },
+
+  
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 <ion-header [style.visibility]="content_visibility">
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title>
-      QR Code
+      Pago
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -22,11 +22,11 @@
     expand="block" 
     class="ion-margin" 
     (click)="startScan()">
-    Scan QR Code
+    Escanear código vendedor
   </ion-button>
 
   <ion-item *ngIf="scannedResult">
-    <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+    <ion-label class="ion-text-wrap">Pago: {{scannedResult}}</ion-label>
   </ion-item>
   <!-- asd -->
 </ion-content>

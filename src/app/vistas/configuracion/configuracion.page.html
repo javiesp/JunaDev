@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>configuracion</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Configuracion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Video Games</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Modo noche
+      </ion-label>
+      <ion-toggle slot="end" [checked]="true"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mega Man X</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>The Legend of Zelda</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pac-Man</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Super Mario World</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="logout()" color="danger" fill="outline">Cerrar sesión</ion-button>
 </ion-content>
