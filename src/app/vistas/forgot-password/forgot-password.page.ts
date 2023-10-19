@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FireserviceService } from 'src/app/fireservice.service';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.page.html',
@@ -9,13 +10,21 @@ import { FormControl } from '@angular/forms';
 })
 export class ForgotPasswordPage implements OnInit {
   userEmail = new FormControl('');
-  constructor() { }
+  constructor(private authSvc:FireserviceService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
   onReset(){
-    console.log('SentEmail');
+    try{
+      const email = this.userEmail.value;
+    this.authSvc.resetPassword(email);
+    window.alert('Email enviado');
+    this.router.navigate(['/login']);
+
+    }
+    catch(error){console.log(error);}
+    
   }
 
 

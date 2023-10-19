@@ -30,8 +30,8 @@
         </ion-col>
       </ion-row>
     </div>
-    <div class="barra-busqueda ion-padding">
-      <ion-searchbar show-clear-button="always" clear-icon="close" (ionChange)="getItems($event)"></ion-searchbar>
+    <div class="barra-busqueda ion-padding"><!--
+    <ion-searchbar show-clear-button="always" clear-icon="close" (ionChange)="getItems($event)"></ion-searchbar>-->
     </div>
   </ion-toolbar>
 </ion-header>
@@ -41,68 +41,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <swiper-container>
-    <swiper-slide>
-      <img src="assets/icon/1.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-      <img src="assets/icon/2.jpg" alt=""> 
-    </swiper-slide>
-    <swiper-slide>
-      <img src="assets/icon/3.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-      <img src="assets/icon/4.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-      <img src="assets/icon/5.jpg" alt="">
-    </swiper-slide>
-  </swiper-container>
 
-
-  <div class="container-grid-food">
-    <div class="ion-text-center topic">
-      ¿Qué te gustaría ordenar?
-    </div>
-    <swiper-container>
-      <swiper-slide class="slide-comidas">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="4">
-              <img src="https://static.vecteezy.com/system/resources/previews/022/911/694/non_2x/cute-cartoon-burger-icon-free-png.png" alt="Pizza" width="400px" height="400px">
-              <ion-label>Hamburguesa</ion-label>
-            </ion-col>
-            <ion-col size="4">
-              <img src="https://static.vecteezy.com/system/resources/previews/024/725/117/non_2x/pizza-pizza-pizza-with-transparent-background-ai-generated-free-png.png" alt="Hamburguesa" width="400px" height="600px">
-              <ion-label>Pizza</ion-label>
-            </ion-col>
-            <ion-col size="4">
-              <img src="https://cf.mysushishop.co.uk/product-11881-zoom/Veggie-Gyozas.png" alt="Sushi" width="400px" height="400px">
-              <ion-label>Sushi</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </swiper-slide>
-      <swiper-slide>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="4">
-              <img src="https://png.pngtree.com/png-clipart/20220125/original/pngtree-summer-drink-mint-lemonade-png-image_7218399.png" alt="bebestibles" width="400px" height="400px">
-              <ion-label>Bebidas</ion-label>
-            </ion-col>
-            <ion-col size="4">
-              <img src="https://static.vecteezy.com/system/resources/previews/018/246/195/original/delicious-chocolate-cake-sweet-chocolate-cake-slice-png.png" alt="Hamburguesa">
-              <ion-label>Postres</ion-label>
-            </ion-col>
-            <ion-col size="4">
-              <img src="https://cf.mysushishop.co.uk/product-11881-zoom/Veggie-Gyozas.png" alt="Sushi">
-              <ion-label>Comida china</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </swiper-slide>
-    </swiper-container>
-  </div>
 
 
   
@@ -119,26 +58,7 @@
   </ion-list>-->
   
   <!-- Comidas -->
-  <ion-card *ngFor="let category of jsonData.food">
-    <ion-card-header>
-      {{ category.category }}
-    </ion-card-header>
-    <ion-card-content>
-      
-      <ion-item *ngFor="let meal of category.meals">
-        <ion-thumbnail slot="start">
-          <img [src]="meal.img" alt="{{ meal.name }}" width="100">
-        </ion-thumbnail>
-        <ion-label>
-          {{ meal.name }}
-          <p>Precio: {{ meal.price }}</p>
-          <p>Información: {{ meal.info }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
 
-</ion-content>
 
 <footer class="footer">
   <!-- ion tab -->
