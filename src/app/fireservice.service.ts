@@ -7,11 +7,11 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 })
 export class FireserviceService {
   
-
   constructor(
     private auth:AngularFireAuth,
     private firestore:AngularFirestore
 
+    
   ) { }
     loginWithEmail(data){
       return this.auth.signInWithEmailAndPassword(data.email,data.password);
@@ -24,6 +24,13 @@ export class FireserviceService {
     }
     getDetails(data){
       return this.firestore.collection("users").doc(data.uid).valueChanges();
+    }
+
+    async resetPassword(email:string):Promise<void>{
+      try{
+        return this.auth.sendPasswordResetEmail(email);
+      }
+      catch(error){console.log(error)}
     }
 
     async signOut() {
