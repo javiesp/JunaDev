@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {FireserviceService} from 'src/app/fireservice.service';
 
 
@@ -14,7 +15,7 @@ export class RegistroPage implements OnInit {
   public email:any;
 
   constructor(
-    public fireService:FireserviceService
+    public fireService:FireserviceService,public router:Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class RegistroPage implements OnInit {
         }
         this.fireService.saveDetails(data).then(res=>{
           alert('account create ');
+          this.router.navigate(['/login']);
         },err=>{
           console.log (err);
         }
