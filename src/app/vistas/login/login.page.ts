@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-
+ // Esta función se ejecuta cuando se presiona el botón de inicio de sesión.
   async login() {
     if (!this.email || !this.password) {
       await this.presentAlert('Por favor, ingresa un correo electrónico y una contraseña.');
@@ -61,23 +61,24 @@ export class LoginPage implements OnInit {
   }
   
   
-
+  // Esta función se ejecuta cuando se presiona el botón de registro.
+  // Redirige al usuario a la página de registro.
   signup() {
     this.router.navigate(['/registro']); // Redirige a la página de registro
   }
 
-  
+  // Esta función muestra un indicador de carga con un mensaje de "Iniciando Sesión...".
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       spinner: "bubbles",
       message: 'Iniciando Sesion...',
-      //duration: 3000,
     });
 
     loading.present();
   }
 
-
+  // Esta función muestra una alerta con un mensaje de error.
+  // Se utiliza para mostrar mensajes de error al usuario.
   async presentAlert(message: string) {
     const alert = await this.alertController.create({
       header: 'Mensaje de Error',
@@ -88,7 +89,6 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
   
-
 }
 
 

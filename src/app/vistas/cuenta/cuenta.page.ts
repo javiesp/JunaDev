@@ -27,38 +27,6 @@ export class CuentaPage implements OnInit {
     this.loadUserInfo();
   }
 
-  async logout() {
-    const alert = await this.alertController.create({
-      header: 'Cerrar Sesión',
-      message: '¿Está seguro de que desea cerrar sesión?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            // Cancelar la acción
-          }
-        },
-        {
-          text: 'Cerrar Sesión',
-          handler: async () => {
-            try {
-              await this.fireservice.signOut();
-              this.router.navigate(['/login']);
-              this.userEmail = '';
-              this.creationTime = '';
-              this.username = '';
-            } catch (err) {
-              console.error(err);
-            }
-          }
-        }
-      ]
-    });
-  
-    await alert.present();
-  }
-  
 
   async loadUserInfo() {
     try {

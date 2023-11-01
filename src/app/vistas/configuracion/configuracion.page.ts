@@ -24,6 +24,9 @@ export class ConfiguracionPage implements OnInit {
   ngOnInit() {
   }
 
+
+  // Esta función se ejecuta cuando el usuario desea cerrar sesión.
+  // Muestra un cuadro de diálogo de confirmación para asegurarse de que el usuario desea cerrar sesión.
   async logout() {
     const alert = await this.alertController.create({
       header: 'Cerrar Sesión',
