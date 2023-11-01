@@ -38,16 +38,53 @@
 
 
 <ion-content [fullscreen]="true">
-  <!--ionic generate component mi-slide 
 
-
-  <ion-list>
-    <ion-item *ngFor="let rest of jsonRestData">
-      {{ rest.restaurant }}
-    </ion-item>
-  </ion-list>
+  <div class="container-img">
+    <div class="banda-promos">
+      <img src="assets/icon/1.jpg" alt="">
+    </div>
+    <div class="banda-etiquetas">
+      <div class="topic">
+        ¿Qué te gustaría ordenar?
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/911/694/non_2x/cute-cartoon-burger-icon-free-png.png" alt="Pizza" width="400px" height="400px">
+            <ion-label>Sushi</ion-label>
+          </ion-col>
+          <ion-col size="4">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/725/117/non_2x/pizza-pizza-pizza-with-transparent-background-ai-generated-free-png.png" alt="Hamburguesa" width="400px" height="600px">
+            <ion-label>Pizza</ion-label>
+          </ion-col>
+          <ion-col size="4">
+            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c1f9.png" alt="Sushi" width="400px" height="400px">
+            <ion-label>Sushi</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
   
-  Comidas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Restaurantes JunaExpress</ion-card-title>
+      <button routeLink="/restaurantes">visitar</button>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="container-rest">
+        <ion-list>
+          <ion-item *ngFor="let restaurante of restaurantes">
+            <img [src]="restaurante.img" alt="{{ restaurante.nombre }}">
+            <ion-label>{{ restaurante.nombre }} - Especialidad: {{ restaurante.especialidad }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>
 
 
 <footer class="footer">

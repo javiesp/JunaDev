@@ -107,3 +107,22 @@ ion-header{
     margin-top: 10px; 
     color: #cccccc;
   }
+
+.container-rest{
+  display: flez;
+}
+
+.container-rest img{
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+.banda-etiquetas img{
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  margin: 10px; 
+  border-radius: 10px;
+}
