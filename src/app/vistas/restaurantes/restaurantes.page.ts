@@ -33,14 +33,19 @@ export class RestaurantesPage implements OnInit {
     carritoItemRef.update({ Menu: menu, Restaurante: restaurante });
   }
 
+
+
   //obtiene el menu del restaurante seleccionado
-  getMenuRestaurante(restauranteId: string) {
-    const restaurante = this.restaurantes.find((rest) => rest.id === restauranteId);
+  getMenuRestaurante(restauranteId: number) {
+    const restaurante = this.restaurantes.find(rest => rest.id === restauranteId);
+    
     if (restaurante) {
       this.restauranteSeleccionado = restaurante.nombre;
       this.menuRestaurante = restaurante.menu;
+      this.isModalOpen = true; // Asegúrate de establecer el modal como abierto
     }
   }
+  
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
