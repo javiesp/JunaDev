@@ -21,17 +21,19 @@ export class RestaurantesPage implements OnInit {
 
   }
 
-  // Función para generar un nuevo pedidoID
+  //Función para generar un nuevo pedidoID
   generarPedidoID(): string {
     return uuidv4();
   }
 
+  //agrega el pedido al carrito junto con sus id
   agregarAlCarrito(usuarioID: string, menu: any, restaurante: string) {
     const pedidoID = this.generarPedidoID(); // Genera un nuevo pedidoID usando la función
     const carritoItemRef = this.db.object(`CarritoPedidos/${usuarioID}/${pedidoID}`);
     carritoItemRef.update({ Menu: menu, Restaurante: restaurante });
   }
 
+  //obtiene el menu del restaurante seleccionado
   getMenuRestaurante(restauranteId: string) {
     const restaurante = this.restaurantes.find((rest) => rest.id === restauranteId);
     if (restaurante) {
