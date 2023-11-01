@@ -68,13 +68,13 @@
             <div class="container-menu">
               <ion-list>
                 <ion-item *ngFor="let plato of menuRestaurante">
-                  <img [src]="plato.img" alt="{{ plato.nombre }}">
-                  <ion-label>
-                    <h2>{{ plato.nombre }}</h2>
-                    <p>{{ plato.info }}</p>
-                    <p>Precio: {{ plato.precio }}</p>
-                  </ion-label>
-                  <ion-button fill="clear" (click)="agregarAlCarrito(uid, plato, restauranteSeleccionado)">Agregar al Carrito</ion-button>
+                  <div class="items-menu">
+                    <img [src]="plato.img" alt="{{ plato.nombre }}">
+                    <ion-label><h2>{{ plato.nombre }}</h2></ion-label>
+                    <ion-label><p>{{ plato.info }}</p></ion-label>
+                    <ion-label> <p>Precio: {{ plato.precio }}</p></ion-label>
+                    <ion-button fill="clear" (click)="agregarAlCarrito(uid, plato, restauranteSeleccionado)">Agregar al Carrito</ion-button>
+                  </div>
                 </ion-item>
               </ion-list>
             </div>
