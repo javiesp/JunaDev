@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-// import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
@@ -9,7 +8,7 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 })
 export class HomePage implements OnDestroy {
 
-  // https://www.npmjs.com/package/angularx-qrcode
+
   qrCodeString = 'Clave dinámica';
   scannedResult: any;
   content_visibility = '';
@@ -18,15 +17,9 @@ export class HomePage implements OnDestroy {
     // private barcodeScanner: BarcodeScanner
     ) {}
 
-  // startScan() {
-  //   this.barcodeScanner.scan().then(barcodeData => {
-  //     console.log('Barcode data', barcodeData);
-  //     this.scannedResult = barcodeData?.text;
-  //    }).catch(err => {
-  //        console.log('Error', err);
-  //    });
-  // }
 
+ // Esta función verifica si la aplicación tiene permiso para acceder al escáner de códigos de barras.
+ // Devuelve `true` si el permiso ha sido otorgado y `false` en caso contrario.
   async checkPermission() {
     try {
       // check or request permission
@@ -40,7 +33,8 @@ export class HomePage implements OnDestroy {
       console.log(e);
     }
   }
-
+ // Esta función se ejecuta al presionar el botón para iniciar el escaneo.
+ // Verifica el permiso para usar el escáner y, si se otorga, inicia el escaneo.
   async startScan() {
     try {
       const permission = await this.checkPermission();
@@ -65,6 +59,9 @@ export class HomePage implements OnDestroy {
     }
   }
 
+
+  // Esta función se utiliza para detener el escaneo y restaurar la interfaz a su estado normal.
+  // Muestra nuevamente el fondo de la aplicación y elimina la clase 'scanner-active' del cuerpo del documento.
   stopScan() {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
@@ -72,8 +69,37 @@ export class HomePage implements OnDestroy {
     this.content_visibility = '';
   }
 
+  // Esta función se ejecuta cuando se destruye la página.
+  // Asegura que el escaneo se detenga cuando la página se destruye.
   ngOnDestroy(): void {
       this.stopScan();
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // startScan() {
+  //   this.barcodeScanner.scan().then(barcodeData => {
+  //     console.log('Barcode data', barcodeData);
+  //     this.scannedResult = barcodeData?.text;
+  //    }).catch(err => {
+  //        console.log('Error', err);
+  //    });
+  // }
+
+
+  //https://www.npmjs.com/package/angularx-qrcode
+
+  // import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';

@@ -18,16 +18,7 @@ export class RestaurantesPage implements OnInit {
   uid: string;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private loadingController: LoadingController) {
-    /*this.db.list('restaurantes').valueChanges().subscribe((data: any[]) => {
-      this.restaurantes = data;
-    });
 
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.uid = user.uid;
-        console.log('uid usuario:', this.uid);
-      }
-    });*/
   }
 
   // Función para generar un nuevo pedidoID
@@ -76,3 +67,48 @@ export class RestaurantesPage implements OnInit {
 
   ngOnInit() {}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*this.db.list('restaurantes').valueChanges().subscribe((data: any[]) => {
+      this.restaurantes = data;
+    });
+
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.uid = user.uid;
+        console.log('uid usuario:', this.uid);
+      }
+    });*/

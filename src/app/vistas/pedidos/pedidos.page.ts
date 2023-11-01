@@ -26,7 +26,9 @@ export class PedidosPage implements OnInit {
   ngOnInit() {
   }
 
+  // Esta función elimina todos los pedidos asociados a un usuario específico en la base de datos.
   eliminarPedidosDelUsuario(usuarioID: string) {
+     // Accede a la base de datos y elimina el nodo correspondiente a los pedidos del usuario.
     this.db.object(`CarritoPedidos/${usuarioID}`).remove()
       .then(() => {
         console.log('Pedidos del usuario eliminados exitosamente.');
