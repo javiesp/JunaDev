@@ -15,6 +15,7 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit(): void {
   }
 
+  
   onReset(){
     try{
       const email = this.userEmail.value;

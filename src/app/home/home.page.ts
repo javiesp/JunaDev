@@ -76,30 +76,3 @@ export class HomePage implements OnDestroy {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // startScan() {
-  //   this.barcodeScanner.scan().then(barcodeData => {
-  //     console.log('Barcode data', barcodeData);
-  //     this.scannedResult = barcodeData?.text;
-  //    }).catch(err => {
-  //        console.log('Error', err);
-  //    });
-  // }
-
-
-  //https://www.npmjs.com/package/angularx-qrcode
-
-  // import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
