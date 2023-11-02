@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class PedidosPage implements OnInit {
   uid: string;
   pedidos: any[] = [];
+  codigo: string;
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.afAuth.authState.subscribe((user) => {
@@ -22,6 +23,7 @@ export class PedidosPage implements OnInit {
 
   ngOnInit() {}
 
+  //Funcion que captura los pedidos del cliente y los lista en el carrito 
   obtenerPedidosUsuario(uid: string) {
     this.db.object(`CarritoPedidos/${uid}`).valueChanges().subscribe((data: any) => {
       if (data) {
@@ -32,7 +34,23 @@ export class PedidosPage implements OnInit {
       }
     });
   }
+  
+  //Funcion para obtener json con descuentos 
+  obtenerCodigoDescuento(codigo: string) {
+    this.db.object(`CodigoDescuentos/${codigo}`).valueChanges().subscribe((data: any) => {
+      if (data && data.Codigo) {
+        this.codigo = data.Codigo; // Asigna el código de descuento a this.codigo
+        console.log('Código de descuento:', this.codigo);
+      } else {
+        console.log('No se recibieron datos o no se encontró el código de descuento.');
+      }
+    });
+  }
+  
+  
 
+
+  //Elimina pedido de carrito de compra
   eliminarPedidosDelUsuario(usuarioID: string) {
     this.db.object(`CarritoPedidos/${usuarioID}`).remove()
       .then(() => {
@@ -44,14 +62,19 @@ export class PedidosPage implements OnInit {
       });
   }
 
+  //Calcula el total de la compra sumando los precios del carrito 
   calcularTotal(): number {
     let total = 0;
     if (this.pedidos && this.pedidos.length > 0) {
       this.pedidos.forEach((pedido: any) => {
         total += pedido?.Pedido?.precio || 0; // Suma el precio del pedido al total
+
       });
     }
     return total;
   }
+
+
+  
   
 }
