@@ -14,6 +14,7 @@ export class RestaurantesPage implements OnInit {
   restaurantes: any[];
   menuRestaurante: any[];
   restauranteSeleccionado: any;
+  precioMenu: any;
   isModalOpen: boolean;
   uid: string;
 
@@ -27,11 +28,24 @@ export class RestaurantesPage implements OnInit {
   }
 
   //agrega el pedido al carrito junto con sus id
-  agregarAlCarrito(usuarioID: string, menu: any, restaurante: string) {
-    const pedidoID = this.generarPedidoID(); // Genera un nuevo pedidoID usando la función
+  agregarAlCarrito(usuarioID: string, plato: any, restaurante: string) {
+    const pedidoID = this.generarPedidoID();
+      
+    // Crear un objeto con los detalles del plato
+    const pedido = {
+      platoID: plato.id,
+      nombre: plato.nombre,
+      imagen: plato.img,
+      precio: plato.precio,
+      restaurante: restaurante
+    };
+  
     const carritoItemRef = this.db.object(`CarritoPedidos/${usuarioID}/${pedidoID}`);
-    carritoItemRef.update({ Menu: menu, Restaurante: restaurante });
+    carritoItemRef.update({ Pedido: pedido }); // Modifica para que se almacene bajo "Pedido"
+    
+    console.log('ID del pedido:', pedidoID, 'Pedido:', pedido,'user: ', usuarioID);
   }
+  
 
 
 
@@ -42,8 +56,10 @@ export class RestaurantesPage implements OnInit {
     if (restaurante) {
       this.restauranteSeleccionado = restaurante.nombre;
       this.menuRestaurante = restaurante.menu;
+      this.precioMenu = restaurante.precio;
       this.isModalOpen = true; // Asegúrate de establecer el modal como abierto
     }
+
   }
   
 
