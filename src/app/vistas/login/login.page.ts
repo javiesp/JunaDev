@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   
   public email:any;
   public password: any;
+  public apellido: any;
 
   constructor(
     private router: Router,
@@ -30,9 +31,7 @@ export class LoginPage implements OnInit {
       await this.presentAlert('Por favor, ingresa un correo electrónico y una contraseña.');
       return;
     }
-  
     this.showLoading();
-  
     try {
       const res = await this.fireservice.loginWithEmail({ email: this.email, password: this.password });
       console.log(res);

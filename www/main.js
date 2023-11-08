@@ -32,11 +32,11 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
     },
     {
         path: 'registro',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_registro_registro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_registro_registro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
     },
     {
         path: 'menu-principal',
@@ -60,7 +60,7 @@ const routes = [
     },
     {
         path: 'configuracion',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_configuracion_configuracion_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/configuracion/configuracion.module */ 793)).then(m => m.ConfiguracionPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_configuracion_configuracion_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/configuracion/configuracion.module */ 793)).then(m => m.ConfiguracionPageModule),
         ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
@@ -75,12 +75,12 @@ const routes = [
     },
     {
         path: 'cuenta',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_cuenta_cuenta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/cuenta/cuenta.module */ 2067)).then(m => m.CuentaPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_cuenta_cuenta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/cuenta/cuenta.module */ 2067)).then(m => m.CuentaPageModule),
         ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'forgot-password',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_forgot-password_forgot-password_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/forgot-password/forgot-password.module */ 2740)).then(m => m.ForgotPasswordPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_forgot-password_forgot-password_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/forgot-password/forgot-password.module */ 2740)).then(m => m.ForgotPasswordPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {

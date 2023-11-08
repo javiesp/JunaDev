@@ -1,4 +1,4 @@
-package com.JunaExpress.app;
+package com.junaExpress.app;
 
 import com.getcapacitor.BridgeActivity;
 

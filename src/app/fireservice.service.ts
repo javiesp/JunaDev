@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,8 @@ export class FireserviceService {
   
   constructor(
     private auth:AngularFireAuth,
-    private firestore:AngularFirestore
-
+    private firestore:AngularFirestore,
+    private firebaseDB: AngularFireDatabase
     
   ) { }
     loginWithEmail(data){
@@ -25,7 +27,6 @@ export class FireserviceService {
     getDetails(data){
       return this.firestore.collection("users").doc(data.uid).valueChanges();
     }
-
     async resetPassword(email:string):Promise<void>{
       try{
         return this.auth.sendPasswordResetEmail(email);
@@ -41,4 +42,9 @@ export class FireserviceService {
         throw error;
       }
     }
+     // obtiene datos del usuario
+  async getProfile(){
+    const user = await this.auth.currentUser;
+    return user.uid;
+  }
 }

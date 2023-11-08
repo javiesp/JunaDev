@@ -12,19 +12,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FireserviceService": () => (/* binding */ FireserviceService)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/compat/auth */ 5873);
+/* harmony import */ var _angular_fire_compat_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/compat/database */ 2575);
 /* harmony import */ var _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/compat/firestore */ 2393);
 
 
 
 
 
+
 let FireserviceService = class FireserviceService {
-  constructor(auth, firestore) {
+  constructor(auth, firestore, firebaseDB) {
     this.auth = auth;
     this.firestore = firestore;
+    this.firebaseDB = firebaseDB;
   }
 
   loginWithEmail(data) {
@@ -66,6 +69,16 @@ let FireserviceService = class FireserviceService {
         throw error;
       }
     })();
+  } // obtiene datos del usuario
+
+
+  getProfile() {
+    var _this3 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const user = yield _this3.auth.currentUser;
+      return user.uid;
+    })();
   }
 
 };
@@ -74,9 +87,11 @@ FireserviceService.ctorParameters = () => [{
   type: _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_1__.AngularFireAuth
 }, {
   type: _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_2__.AngularFirestore
+}, {
+  type: _angular_fire_compat_database__WEBPACK_IMPORTED_MODULE_3__.AngularFireDatabase
 }];
 
-FireserviceService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+FireserviceService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
   providedIn: 'root'
 })], FireserviceService);
 
