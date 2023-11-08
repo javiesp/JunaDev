@@ -90,12 +90,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RegistroPage": () => (/* binding */ RegistroPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro.page.html?ngResource */ 5459);
-/* harmony import */ var _registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro.page.scss?ngResource */ 721);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/fireservice.service */ 9792);
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro.page.html?ngResource */ 5459);
+/* harmony import */ var _registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro.page.scss?ngResource */ 721);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/fireservice.service */ 9792);
+
+
 
 
 
@@ -103,50 +107,81 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RegistroPage = class RegistroPage {
-    constructor(fireService, router) {
-        this.fireService = fireService;
-        this.router = router;
-    }
-    ngOnInit() {
-    }
-    // Esta función se encarga del proceso de registro de un nuevo usuario en la aplicación.
-    signup() {
-        // Llama al servicio de Firebase para registrarse con el correo electrónico y la contraseña proporcionados.
-        this.fireService.signup({ email: this.email, password: this.password }).then(res => {
-            if (res.user.uid) {
-                // Cuando el registro es exitoso, crea un objeto de datos del usuario.
-                let data = {
-                    username: this.username,
-                    password: this.password,
-                    apellido: this.apellido,
-                    email: this.email
-                };
-                // Llama al servicio de Firebase para guardar los detalles del usuario en la base de datos.
-                this.fireService.saveDetails(data).then(res => {
-                    alert('account create ');
-                    this.router.navigate(['/login']);
-                }, err => {
-                    console.log(err);
-                });
-            }
-        }, err => {
-            alert(err.message);
-            console.log(err);
-        });
-    }
-};
-RegistroPage.ctorParameters = () => [
-    { type: src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_2__.FireserviceService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router }
-];
-RegistroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
-        selector: 'app-registro',
-        template: _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-        styles: [_registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
-    })
-], RegistroPage);
+  constructor(fireService, router, alertController) {
+    this.fireService = fireService;
+    this.router = router;
+    this.alertController = alertController;
+  }
 
+  ngOnInit() {} // Esta función se encarga del proceso de registro de un nuevo usuario en la aplicación.
+
+
+  signup() {
+    this.fireService.signup({
+      email: this.email,
+      password: this.password
+    }).then(res => {
+      if (res.user.uid) {
+        let data = {
+          username: this.username,
+          password: this.password,
+          apellido: this.apellido,
+          email: this.email
+        };
+        this.fireService.saveDetails(data).then(res => {
+          this.showSuccessAlert();
+          this.router.navigate(['/login']);
+        }, err => {
+          console.log(err);
+        });
+      }
+    }, err => {
+      this.showErrorAlert(err.message);
+      console.log(err);
+    });
+  }
+
+  showSuccessAlert() {
+    var _this = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this.alertController.create({
+        header: 'Cuenta creada',
+        message: 'Tu cuenta ha sido registrada con éxito.',
+        buttons: ['OK']
+      });
+      yield alert.present();
+    })();
+  }
+
+  showErrorAlert(errorMessage) {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this2.alertController.create({
+        header: 'Error al registrar',
+        message: errorMessage,
+        buttons: ['OK']
+      });
+      yield alert.present();
+    })();
+  }
+
+};
+
+RegistroPage.ctorParameters = () => [{
+  type: src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_3__.FireserviceService
+}, {
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router
+}, {
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController
+}];
+
+RegistroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+  selector: 'app-registro',
+  template: _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
+  styles: [_registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__]
+})], RegistroPage);
 
 
 /***/ }),

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import {FireserviceService} from 'src/app/fireservice.service';
+
 
 
 @Component({
@@ -15,42 +17,57 @@ export class RegistroPage implements OnInit {
   public email:any;
 
   constructor(
-    public fireService:FireserviceService,public router:Router
+    public fireService:FireserviceService,public router:Router,private alertController:AlertController 
   ) { }
 
   ngOnInit() {
   }
 
   // Esta función se encarga del proceso de registro de un nuevo usuario en la aplicación.
-  signup(){
-    // Llama al servicio de Firebase para registrarse con el correo electrónico y la contraseña proporcionados.
-    this.fireService.signup({email:this.email,password:this.password}).then(res=>{
-      if (res.user.uid){
-        // Cuando el registro es exitoso, crea un objeto de datos del usuario.
-        let data={
-          
-          username:this.username,
-          password:this.password,
-          apellido:this.apellido,
-          email:this.email
-        }
-         // Llama al servicio de Firebase para guardar los detalles del usuario en la base de datos.
-        this.fireService.saveDetails(data).then(res=>{
-          alert('account create ');
-          this.router.navigate(['/login']);
-        },err=>{
-          console.log (err);
-        }
-        )
-
+  signup() {
+    this.fireService.signup({ email: this.email, password: this.password }).then((res) => {
+      if (res.user.uid) {
+        let data = {
+          username: this.username,
+          password: this.password,
+          apellido: this.apellido,
+          email: this.email
+        };
+  
+        this.fireService.saveDetails(data).then(
+          (res) => {
+            this.showSuccessAlert();
+            this.router.navigate(['/login']);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       }
-    },err=>{
-      alert(err.message);
-      console.log (err);
-    }
-    )
+    }, (err) => {
+      this.showErrorAlert(err.message);
+      console.log(err);
+    });
+  }
+  
+  async showSuccessAlert() {
+    const alert = await this.alertController.create({
+      header: 'Cuenta creada',
+      message: 'Tu cuenta ha sido registrada con éxito.',
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+  
+  async showErrorAlert(errorMessage) {
+    const alert = await this.alertController.create({
+      header: 'Error al registrar',
+      message: errorMessage,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 
 }
-
-
