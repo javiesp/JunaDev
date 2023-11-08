@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">junaExpress</string>
+    <string name="title_activity_main">junaExpress</string>
+    <string name="package_name">com.junaExpress.app</string>
+    <string name="custom_url_scheme">com.junaExpress.app</string>
+</resources>
