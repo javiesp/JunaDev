@@ -1,6 +1,99 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_vistas_login_login_module_ts"],{
 
+/***/ 1502:
+/*!*********************************!*\
+  !*** ./src/app/data.service.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataService": () => (/* binding */ DataService)
+/* harmony export */ });
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
+
+// data.service.ts
+
+
+
+let DataService = class DataService {
+  constructor(storage) {
+    this.storage = storage;
+    this.isStorageReady = false;
+    this.initStorage();
+  } // Inicializa el almacenamiento local
+
+
+  initStorage() {
+    var _this = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Usa el método create() para asegurarte de que la base de datos está lista
+      _this.storage = yield _this.storage.create();
+      _this.isStorageReady = true;
+    })();
+  } // Guardar información del usuario en el almacenamiento local
+
+
+  guardarUsuario(usuario) {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar guardar
+      if (!_this2.isStorageReady) {
+        yield _this2.initStorage();
+      }
+
+      yield _this2.storage.set('usuario', JSON.stringify(usuario));
+    })();
+  } // Obtener información del usuario desde el almacenamiento local
+
+
+  obtenerUsuario() {
+    var _this3 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar obtener
+      if (!_this3.isStorageReady) {
+        yield _this3.initStorage();
+      }
+
+      const usuario = yield _this3.storage.get('usuario');
+      return usuario ? JSON.parse(usuario) : null;
+    })();
+  } // Limpiar la información del usuario al cerrar sesión
+
+
+  cerrarSesion() {
+    var _this4 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar eliminar
+      if (!_this4.isStorageReady) {
+        yield _this4.initStorage();
+      }
+
+      yield _this4.storage.remove('usuario');
+    })();
+  }
+
+};
+
+DataService.ctorParameters = () => [{
+  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__.Storage
+}];
+
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+  providedIn: 'root'
+})], DataService);
+
+
+/***/ }),
+
 /***/ 3506:
 /*!******************************************************!*\
   !*** ./src/app/vistas/login/login-routing.module.ts ***!
@@ -91,13 +184,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LoginPage": () => (/* binding */ LoginPage)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.page.html?ngResource */ 2082);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login.page.scss?ngResource */ 4442);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/fireservice.service */ 9792);
+/* harmony import */ var src_app_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/data.service */ 1502);
+
+
 
 
 
@@ -107,14 +203,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-  constructor(router, loadingCtrl, fireservice, alertController) {
+  constructor(router, loadingCtrl, fireservice, alertController, dataService, cdRef) {
     this.router = router;
     this.loadingCtrl = loadingCtrl;
     this.fireservice = fireservice;
     this.alertController = alertController;
+    this.dataService = dataService;
+    this.cdRef = cdRef;
   }
 
-  ngOnInit() {} // Esta función se ejecuta cuando se presiona el botón de inicio de sesión.
+  ngOnInit() {
+    // Verificar si hay un usuario en el almacenamiento local al cargar la página
+    this.verificarUsuarioAlCargarPagina();
+  } // Esta función se ejecuta cuando se presiona el botón de inicio de sesión.
 
 
   login() {
@@ -138,14 +239,23 @@ let LoginPage = class LoginPage {
         if (res.user.uid) {
           _this.fireservice.getDetails({
             uid: res.user.uid
-          }).subscribe(res => {
-            console.log(res);
+          }).subscribe( /*#__PURE__*/function () {
+            var _ref = (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (userData) {
+              console.log(userData);
+              yield _this.dataService.guardarUsuario(userData); // Guardar información del usuario en el almacenamiento local
+
+              _this.loadingCtrl.dismiss();
+
+              _this.router.navigate(['/menu-principal']);
+            });
+
+            return function (_x) {
+              return _ref.apply(this, arguments);
+            };
+          }(), err => {
+            console.log(err);
 
             _this.loadingCtrl.dismiss();
-
-            _this.router.navigate(['/menu-principal']);
-          }, err => {
-            console.log(err);
           });
         }
       } catch (err) {
@@ -160,55 +270,72 @@ let LoginPage = class LoginPage {
         _this.loadingCtrl.dismiss();
       }
     })();
+  } // Verificar si hay un usuario en el almacenamiento local al cargar la página
+
+
+  verificarUsuarioAlCargarPagina() {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const usuarioGuardado = yield _this2.dataService.obtenerUsuario();
+
+      if (usuarioGuardado) {
+        // Si hay un usuario almacenado, navegar directamente al menú principal
+        _this2.router.navigate(['/menu-principal']);
+      }
+    })();
+  } // Función para mostrar el cuadro de alerta
+
+
+  presentAlert(mensaje) {
+    var _this3 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this3.alertController.create({
+        header: 'Alerta',
+        message: mensaje,
+        buttons: ['OK']
+      });
+      yield alert.present();
+    })();
+  } // Función para mostrar el indicador de carga
+
+
+  showLoading() {
+    var _this4 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const loading = yield _this4.loadingCtrl.create({
+        message: 'Cargando...',
+        duration: 5000
+      });
+      yield loading.present();
+    })();
   } // Esta función se ejecuta cuando se presiona el botón de registro.
   // Redirige al usuario a la página de registro.
 
 
   signup() {
     this.router.navigate(['/registro']); // Redirige a la página de registro
-  } // Esta función muestra un indicador de carga con un mensaje de "Iniciando Sesión...".
-
-
-  showLoading() {
-    var _this2 = this;
-
-    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const loading = yield _this2.loadingCtrl.create({
-        spinner: "bubbles",
-        message: 'Iniciando Sesion...'
-      });
-      loading.present();
-    })();
-  } // Esta función muestra una alerta con un mensaje de error.
-  // Se utiliza para mostrar mensajes de error al usuario.
-
-
-  presentAlert(message) {
-    var _this3 = this;
-
-    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this3.alertController.create({
-        header: 'Mensaje de Error',
-        message: message,
-        buttons: ['OK']
-      });
-      yield alert.present();
-    })();
   }
 
 };
 
 LoginPage.ctorParameters = () => [{
-  type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController
 }, {
   type: src_app_fireservice_service__WEBPACK_IMPORTED_MODULE_3__.FireserviceService
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController
+}, {
+  type: src_app_data_service__WEBPACK_IMPORTED_MODULE_4__.DataService
+}, {
+  type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ChangeDetectorRef
 }];
 
-LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
   selector: 'app-login',
   template: _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__]
