@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
-/* harmony import */ var D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.html?ngResource */ 3853);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 1020);
@@ -105,26 +105,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 
 let HomePage = class HomePage {
   constructor() {
-    // https://www.npmjs.com/package/angularx-qrcode
     this.qrCodeString = 'Clave dinámica';
     this.content_visibility = '';
-  } // startScan() {
-  //   this.barcodeScanner.scan().then(barcodeData => {
-  //     console.log('Barcode data', barcodeData);
-  //     this.scannedResult = barcodeData?.text;
-  //    }).catch(err => {
-  //        console.log('Error', err);
-  //    });
-  // }
+  } // Esta función verifica si la aplicación tiene permiso para acceder al escáner de códigos de barras.
+  // Devuelve `true` si el permiso ha sido otorgado y `false` en caso contrario.
 
 
   checkPermission() {
-    return (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         // check or request permission
         const status = yield _capacitor_community_barcode_scanner__WEBPACK_IMPORTED_MODULE_3__.BarcodeScanner.checkPermission({
@@ -141,12 +133,14 @@ let HomePage = class HomePage {
         console.log(e);
       }
     })();
-  }
+  } // Esta función se ejecuta al presionar el botón para iniciar el escaneo.
+  // Verifica el permiso para usar el escáner y, si se otorga, inicia el escaneo.
+
 
   startScan() {
     var _this = this;
 
-    return (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const permission = yield _this.checkPermission();
 
@@ -173,14 +167,18 @@ let HomePage = class HomePage {
         _this.stopScan();
       }
     })();
-  }
+  } // Esta función se utiliza para detener el escaneo y restaurar la interfaz a su estado normal.
+  // Muestra nuevamente el fondo de la aplicación y elimina la clase 'scanner-active' del cuerpo del documento.
+
 
   stopScan() {
     _capacitor_community_barcode_scanner__WEBPACK_IMPORTED_MODULE_3__.BarcodeScanner.showBackground();
     _capacitor_community_barcode_scanner__WEBPACK_IMPORTED_MODULE_3__.BarcodeScanner.stopScan();
     document.querySelector('body').classList.remove('scanner-active');
     this.content_visibility = '';
-  }
+  } // Esta función se ejecuta cuando se destruye la página.
+  // Asegura que el escaneo se detenga cuando la página se destruye.
+
 
   ngOnDestroy() {
     this.stopScan();
@@ -1215,7 +1213,7 @@ exports.getBestMask = function getBestMask(data, setupFormatFunc) {
   \*******************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const VersionCheck = __webpack_require__(/*! ./version-check */ 3127);
+const VersionCheck = __webpack_require__(/*! ./version-check */ 6388);
 
 const Regex = __webpack_require__(/*! ./regex */ 4217);
 /**
@@ -2543,7 +2541,7 @@ exports.toSJIS = function toSJIS(kanji) {
 
 /***/ }),
 
-/***/ 3127:
+/***/ 6388:
 /*!****************************************************************!*\
   !*** ./node_modules/@cordobo/qrcode/lib/core/version-check.js ***!
   \****************************************************************/
@@ -2575,7 +2573,7 @@ const ECLevel = __webpack_require__(/*! ./error-correction-level */ 1402);
 
 const Mode = __webpack_require__(/*! ./mode */ 5382);
 
-const VersionCheck = __webpack_require__(/*! ./version-check */ 3127); // Generator polynomial used to encode version information
+const VersionCheck = __webpack_require__(/*! ./version-check */ 6388); // Generator polynomial used to encode version information
 
 
 const G18 = 1 << 12 | 1 << 11 | 1 << 10 | 1 << 9 | 1 << 8 | 1 << 5 | 1 << 2 | 1 << 0;
@@ -3202,7 +3200,7 @@ module.exports = function encodeUtf8(input) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lLnBhZ2Uuc2NzcyJ9 */";
+module.exports = "ion-header {\n  background: linear-gradient(315deg, rgb(5, 58, 106) 0%, rgb(17, 152, 210) 100%);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksK0VBQUE7QUFDSiIsImZpbGUiOiJob21lLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1oZWFkZXJ7XHJcbiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMzE1ZGVnLCByZ2JhKDUsIDU4LCAxMDYsIDEpIDAlLCByZ2JhKDE3LCAxNTIsIDIxMCwgMSkgMTAwJSksO1xyXG59Il19 */";
 
 /***/ }),
 
@@ -3213,7 +3211,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header [style.visibility]=\"content_visibility\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      QR Code\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [style.visibility]=\"content_visibility\">\n\n  <ion-card class=\"ion-text-center\">\n    <ion-card-content>\n      <qrcode \n        [qrdata]=\"qrCodeString\" \n        [width]=\"256\" \n        [errorCorrectionLevel]=\"'M'\">\n      </qrcode>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-button \n    expand=\"block\" \n    class=\"ion-margin\" \n    (click)=\"startScan()\">\n    Scan QR Code\n  </ion-button>\n\n  <ion-item *ngIf=\"scannedResult\">\n    <ion-label class=\"ion-text-wrap\">Scanned Result: {{scannedResult}}</ion-label>\n  </ion-item>\n  \n</ion-content>\n<footer class=\"footer\">\n  <!-- ion tab -->\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"cuenta\" routerLink=\"/cuenta\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        Cuenta\n      </ion-tab-button>\n      <ion-tab-button tab=\"menu\" routerLink=\"/menu\">\n        <ion-icon name=\"home-outline\"></ion-icon>\n        Menú\n      </ion-tab-button>\n      <ion-tab-button tab=\"Favoritos\">\n        <ion-icon name=\"pizza-outline\"></ion-icon>\n        Pedidos\n      </ion-tab-button>\n      <ion-tab-button tab=\"restaurant\" routerLink=\"/listarestaurant\">\n        <ion-icon name=\"restaurant-outline\"></ion-icon>\n        Restaurantes\n      </ion-tab-button>\n      <ion-tab-button tab=\"wallet\" routerLink=\"/home\">\n        <ion-icon name=\"wallet\"></ion-icon>\n        Pago\n      </ion-tab-button>\n    </ion-tab-bar>\n</footer>";
+module.exports = "<ion-header [style.visibility]=\"content_visibility\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Pago\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [style.visibility]=\"content_visibility\">\r\n\r\n  <ion-card class=\"ion-text-center\">\r\n    <ion-card-content>\r\n      <qrcode \r\n        [qrdata]=\"qrCodeString\" \r\n        [width]=\"256\" \r\n        [errorCorrectionLevel]=\"'M'\">\r\n      </qrcode>\r\n    </ion-card-content>\r\n  </ion-card>\r\n\r\n  <ion-button \r\n    expand=\"block\" \r\n    class=\"ion-margin\" \r\n    (click)=\"startScan()\">\r\n    Escanear código vendedor\r\n  </ion-button>\r\n\r\n  <ion-item *ngIf=\"scannedResult\">\r\n    <ion-label class=\"ion-text-wrap\">Pago: {{scannedResult}}</ion-label>\r\n  </ion-item>\r\n  <!-- asd -->\r\n</ion-content>\r\n<footer class=\"footer\">\r\n  <!-- ion tab -->\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"cuenta\" routerLink=\"/cuenta\">\r\n        <ion-icon name=\"person-outline\"></ion-icon>\r\n        Cuenta\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"menu\" routerLink=\"/menu-principal\">\r\n        <ion-icon name=\"home-outline\"></ion-icon>\r\n        Menú\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"Favoritos\">\r\n        <ion-icon name=\"pizza-outline\"></ion-icon>\r\n        Pedidos\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"restaurant\" routerLink=\"/restaurantes\">\r\n        <ion-icon name=\"restaurant-outline\"></ion-icon>\r\n        Restaurantes\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"wallet\" routerLink=\"/home\">\r\n        <ion-icon name=\"wallet\"></ion-icon>\r\n        Pago\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n</footer>";
 
 /***/ }),
 
@@ -3229,7 +3227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "QRCodeComponent": () => (/* binding */ QRCodeComponent),
 /* harmony export */   "QRCodeModule": () => (/* binding */ QRCodeModule)
 /* harmony export */ });
-/* harmony import */ var D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _cordobo_qrcode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @cordobo/qrcode */ 8426);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
@@ -3261,7 +3259,7 @@ class QRCodeComponent {
   ngOnChanges() {
     var _this = this;
 
-    return (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this.createQRCode();
     })();
   }
@@ -3321,7 +3319,7 @@ class QRCodeComponent {
   createQRCode() {
     var _this2 = this;
 
-    return (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this2.version && _this2.version > 40) {
         console.warn("[angularx-qrcode] max value for `version` is 40");
         _this2.version = 40;

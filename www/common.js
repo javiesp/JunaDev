@@ -1,6 +1,103 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
+/***/ 9792:
+/*!****************************************!*\
+  !*** ./src/app/fireservice.service.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FireserviceService": () => (/* binding */ FireserviceService)
+/* harmony export */ });
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/compat/auth */ 5873);
+/* harmony import */ var _angular_fire_compat_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/compat/database */ 2575);
+/* harmony import */ var _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/compat/firestore */ 2393);
+
+
+
+
+
+
+let FireserviceService = class FireserviceService {
+  constructor(auth, firestore, firebaseDB) {
+    this.auth = auth;
+    this.firestore = firestore;
+    this.firebaseDB = firebaseDB;
+  }
+
+  loginWithEmail(data) {
+    return this.auth.signInWithEmailAndPassword(data.email, data.password);
+  }
+
+  signup(data) {
+    return this.auth.createUserWithEmailAndPassword(data.email, data.password);
+  }
+
+  saveDetails(data) {
+    return this.firestore.collection("users").doc(data.uid).set(data);
+  }
+
+  getDetails(data) {
+    return this.firestore.collection("users").doc(data.uid).valueChanges();
+  }
+
+  resetPassword(email) {
+    var _this = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        return _this.auth.sendPasswordResetEmail(email);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }
+
+  signOut() {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        yield _this2.auth.signOut();
+      } catch (error) {
+        console.error('Error al cerrar la sesión:', error);
+        throw error;
+      }
+    })();
+  } // obtiene datos del usuario
+
+
+  getProfile() {
+    var _this3 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const user = yield _this3.auth.currentUser;
+      return user.uid;
+    })();
+  }
+
+};
+
+FireserviceService.ctorParameters = () => [{
+  type: _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_1__.AngularFireAuth
+}, {
+  type: _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_2__.AngularFirestore
+}, {
+  type: _angular_fire_compat_database__WEBPACK_IMPORTED_MODULE_3__.AngularFireDatabase
+}];
+
+FireserviceService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+  providedIn: 'root'
+})], FireserviceService);
+
+
+/***/ }),
+
 /***/ 2483:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/button-active-4975dbd0.js ***!
@@ -226,7 +323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
-/* harmony import */ var D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _helpers_4d272360_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-4d272360.js */ 9158);
 
 
@@ -236,7 +333,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const attachComponent = /*#__PURE__*/function () {
-  var _ref = (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+  var _ref = (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
     var _a;
 
     if (delegate) {
@@ -285,7 +382,7 @@ const CoreDelegate = () => {
   let Reference;
 
   const attachViewToDom = /*#__PURE__*/function () {
-    var _ref2 = (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+    var _ref2 = (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
       var _a, _b;
 
       BaseComponent = parentElement;
@@ -597,7 +694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "r": () => (/* binding */ resetContentScrollY),
 /* harmony export */   "s": () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _helpers_4d272360_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-4d272360.js */ 9158);
 /* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 9273);
 
@@ -634,7 +731,7 @@ const isIonContent = el => el && el.tagName === ION_CONTENT_TAG_NAME;
 
 
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,D_Appmovil_Sandbox_ionic_Ionic_6_qrcode_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
       yield new Promise(resolve => (0,_helpers_4d272360_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();

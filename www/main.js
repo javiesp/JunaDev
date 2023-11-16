@@ -11,12 +11,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/fire/compat/auth-guard */ 6566);
 
 
 
+
+const redirectUnauthorizedToLogin = () => (0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.redirectUnauthorizedTo)(['login']);
 const routes = [
     {
         path: 'home',
@@ -29,45 +32,65 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
     },
     {
         path: 'registro',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_registro_registro_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_registro_registro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
     },
     {
         path: 'menu-principal',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_menu-principal_menu-principal_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/menu-principal/menu-principal.module */ 6144)).then(m => m.MenuPrincipalPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("src_app_vistas_menu-principal_menu-principal_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/menu-principal/menu-principal.module */ 6144)).then(m => m.MenuPrincipalPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'usuario',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_usuario_usuario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/usuario/usuario.module */ 6735)).then(m => m.UsuarioPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_usuario_usuario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/usuario/usuario.module */ 6735)).then(m => m.UsuarioPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'scan-qr-pago',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_capacitor-community_barcode-scanner_dist_esm_index_js"), __webpack_require__.e("src_app_vistas_scan-qr-pago_scan-qr-pago_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/scan-qr-pago/scan-qr-pago.module */ 2079)).then(m => m.ScanQrPagoPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_capacitor-community_barcode-scanner_dist_esm_index_js"), __webpack_require__.e("src_app_vistas_scan-qr-pago_scan-qr-pago_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/scan-qr-pago/scan-qr-pago.module */ 2079)).then(m => m.ScanQrPagoPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'restaurantes',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_restaurantes_restaurantes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/restaurantes/restaurantes.module */ 6633)).then(m => m.RestaurantesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("src_app_vistas_restaurantes_restaurantes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/restaurantes/restaurantes.module */ 6633)).then(m => m.RestaurantesPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'configuracion',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_configuracion_configuracion_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/configuracion/configuracion.module */ 793)).then(m => m.ConfiguracionPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_configuracion_configuracion_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/configuracion/configuracion.module */ 793)).then(m => m.ConfiguracionPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
     },
     {
         path: 'carrito-compras',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_carrito-compras_carrito-compras_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/carrito-compras/carrito-compras.module */ 6589)).then(m => m.CarritoComprasPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_vistas_carrito-compras_carrito-compras_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/carrito-compras/carrito-compras.module */ 6589)).then(m => m.CarritoComprasPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'pedidos',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("src_app_vistas_pedidos_pedidos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/pedidos/pedidos.module */ 1922)).then(m => m.PedidosPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'cuenta',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_cuenta_cuenta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/cuenta/cuenta.module */ 2067)).then(m => m.CuentaPageModule),
+        ...(0,_angular_fire_compat_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'forgot-password',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_forgot-password_forgot-password_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/forgot-password/forgot-password.module */ 2740)).then(m => m.ForgotPasswordPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
-AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
+AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules })
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_3__.PreloadAllModules })
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule]
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule]
     })
 ], AppRoutingModule);
 
@@ -121,28 +144,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage-angular */ 7478);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
+/* harmony import */ var _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/fire/compat/firestore */ 2393);
+/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/fire/compat */ 1879);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ 2340);
 
 
 
 
+
+
+
+
+// import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_7__.IonicStorageModule.forRoot(), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_8__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_9__.AngularFirestoreModule],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicRouteStrategy },
             // BarcodeScanner
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
@@ -168,7 +200,16 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: false,
+    firebaseConfig: {
+        apiKey: "AIzaSyA2QLyYxzvEhgz61GOjCIu74hBsAGA4fm4",
+        authDomain: "proyectowilson-77bef.firebaseapp.com",
+        projectId: "proyectowilson-77bef",
+        storageBucket: "proyectowilson-77bef.appspot.com",
+        messagingSenderId: "158703055950",
+        appId: "1:158703055950:web:28339c78759fb70f667f1f",
+        measurementId: "G-XKWGVV421X"
+    }
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -372,7 +413,7 @@ var map = {
 		"node_modules_ionic_core_dist_esm_ion-ripple-effect_entry_js"
 	],
 	"./ion-route_4.entry.js": [
-		5534,
+		8718,
 		"node_modules_ionic_core_dist_esm_ion-route_4_entry_js"
 	],
 	"./ion-searchbar.entry.js": [
@@ -430,7 +471,7 @@ var map = {
 		"node_modules_ionic_core_dist_esm_ion-toggle_entry_js"
 	],
 	"./ion-virtual-scroll.entry.js": [
-		2875,
+		9518,
 		"node_modules_ionic_core_dist_esm_ion-virtual-scroll_entry_js"
 	]
 };
@@ -472,7 +513,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n";
+module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n";
 
 /***/ })
 

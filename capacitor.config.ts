@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'qr-code-app',
+  appId: 'com.junaexpress.app',
+  appName: 'JunaExpress',
   webDir: 'www',
   bundledWebRuntime: false
 };

@@ -36,7 +36,7 @@ export class MenuPrincipalPage implements OnInit {
   async ionViewWillEnter() {
     const loading = await this.loadingController.create({
       message: 'Cargando, espere un momento...', // Mensaje que se mostrará
-      duration: 1000 // Duración en milisegundos (ajusta según tus necesidades)
+      duration: 500 // Duración en milisegundos (ajusta según tus necesidades)
     });
     
     await loading.present();

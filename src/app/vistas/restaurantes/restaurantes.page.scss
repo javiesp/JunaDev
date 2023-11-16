@@ -3,3 +3,19 @@ ion-modal ion-card img{
     height: 60px;
     width: 60px;
   }
+
+  ion-header{
+    ion-toolbar{
+      ion-avatar{
+        background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),;
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  
+  .avatar-title-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  

@@ -50,8 +50,8 @@ export class RestaurantesPage implements OnInit {
 
 
   //obtiene el menu del restaurante seleccionado
-  getMenuRestaurante(restauranteId: number) {
-    const restaurante = this.restaurantes.find(rest => rest.id === restauranteId);
+  async getMenuRestaurante(restauranteId: number) {
+    const restaurante = await this.restaurantes.find(rest => rest.id === restauranteId);
     
     if (restaurante) {
       this.restauranteSeleccionado = restaurante.nombre;

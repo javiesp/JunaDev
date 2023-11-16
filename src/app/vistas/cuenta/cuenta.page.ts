@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FireserviceService } from 'src/app/fireservice.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
+import { User } from 'src/app/models';
+
 
 @Component({
   selector: 'app-cuenta',
@@ -11,10 +13,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class CuentaPage implements OnInit {
   userEmail: string;
-  userName: string;
   creationTime: string; 
   username: string;
-
+  apellido: string;
 
   constructor(
     public fireservice: FireserviceService,
@@ -53,4 +54,19 @@ export class CuentaPage implements OnInit {
       });
     });
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+

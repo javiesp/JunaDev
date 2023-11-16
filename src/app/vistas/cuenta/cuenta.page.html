@@ -5,7 +5,7 @@
         <ion-col size="auto">
           <ion-avatar>
             <ion-buttons>
-              <img src="assets/icon/isotipo-gray.png" alt="">
+              <img src="" alt="">
             </ion-buttons>
           </ion-avatar>
         </ion-col>
@@ -15,7 +15,7 @@
               <ion-text>Estás en</ion-text>
               <p>
                 Santiago, Chile
-                <ion-icon color="dark" name="chevron-down-outline"></ion-icon>
+                <ion-icon color="dark" name="location-outline"></ion-icon>
               </p>
             </ion-label>
           </ion-title>
@@ -34,24 +34,23 @@
 
 <ion-content>
   <ion-card class="account-card">
-    <ion-card-header>
-      <ion-card-title>Datos de la Cuenta</ion-card-title>
+    <ion-card-header  style="text-align: center"   >
+      <ion-card-title >Datos de la Cuenta</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <ion-list-header class="texto">{{ username }}</ion-list-header>
 
       <ion-item>
         <ion-label position="stacked">Correo Electrónico</ion-label>
         <ion-input type="email" [(ngModel)]="userEmail" disabled></ion-input>
       </ion-item>
-
-
       <ion-item>
         <ion-label position="stacked">Nombre</ion-label>
         <ion-input type="text" [(ngModel)]="username" disabled></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Apellido</ion-label>
-        <ion-input type="text" [(ngModel)]="userlastname" disabled></ion-input>
+        <ion-input type="text" [(ngModel)]="apellido" disabled></ion-input>
       </ion-item>
       <!-- Fecha de Registro -->
       <ion-item>
@@ -60,6 +59,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
 </ion-content>
 
 <footer class="footer">
