@@ -4,6 +4,7 @@ import { FireserviceService } from 'src/app/fireservice.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { GmapsService } from 'src/app/servicios/gmaps.service';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-configuracion',
