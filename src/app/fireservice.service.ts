@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,15 @@ export class FireserviceService {
     getDetails(data){
       return this.firestore.collection("users").doc(data.uid).valueChanges();
     }
-    async resetPassword(email:string):Promise<void>{
-      try{
+    async resetPassword(email: string): Promise<void> {
+      try {
         return this.auth.sendPasswordResetEmail(email);
+      } catch (error) {
+        console.error('Error al restablecer la contraseña:', error);
+        throw error;
       }
-      catch(error){console.log(error)}
     }
+    
 
     async signOut() {
       try {
