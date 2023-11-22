@@ -1,31 +1,23 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { ConfiguracionPage } from './configuracion.page';
-
 import {FireserviceService} from 'src/app/fireservice.service';// Ajusta la ruta según tu estructura de archivos
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
 
-const yourFirebaseConfig = {
-  apiKey: "AIzaSyA2QLyYxzvEhgz61GOjCIu74hBsAGA4fm4",
-  authDomain: "proyectowilson-77bef.firebaseapp.com",
-  projectId: "proyectowilson-77bef",
-  storageBucket: "proyectowilson-77bef.appspot.com",
-  messagingSenderId: "158703055950",
-  appId: "1:158703055950:web:28339c78759fb70f667f1f",
-  measurementId: "G-XKWGVV421X"
-};
+const firebaseConfig= environment.firebaseConfig;
 
 describe('ConfiguracionPage', () => {
   let component: ConfiguracionPage;
   let fixture: ComponentFixture<ConfiguracionPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ConfiguracionPage],
       imports: [
         IonicModule.forRoot(),
-        AngularFireModule.initializeApp(yourFirebaseConfig),
+        AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
       ],
       providers: [FireserviceService], // Asegúrate de que el servicio esté proporcionado aquí

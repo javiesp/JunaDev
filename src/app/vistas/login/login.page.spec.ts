@@ -6,17 +6,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { environment } from 'src/environments/environment';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA2QLyYxzvEhgz61GOjCIu74hBsAGA4fm4",
-  authDomain: "proyectowilson-77bef.firebaseapp.com",
-  projectId: "proyectowilson-77bef",
-  storageBucket: "proyectowilson-77bef.appspot.com",
-  messagingSenderId: "158703055950",
-  appId: "1:158703055950:web:28339c78759fb70f667f1f",
-  measurementId: "G-XKWGVV421X"
-};
-
+const firebaseConfig= environment.firebaseConfig;
 describe('LoginPage', () => {
   let component: LoginPage;
   let fixture: ComponentFixture<LoginPage>;

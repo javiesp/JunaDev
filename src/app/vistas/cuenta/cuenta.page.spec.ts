@@ -3,16 +3,9 @@ import { IonicModule } from '@ionic/angular';
 import { CuentaPage } from './cuenta.page';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA2QLyYxzvEhgz61GOjCIu74hBsAGA4fm4",
-  authDomain: "proyectowilson-77bef.firebaseapp.com",
-  projectId: "proyectowilson-77bef",
-  storageBucket: "proyectowilson-77bef.appspot.com",
-  messagingSenderId: "158703055950",
-  appId: "1:158703055950:web:28339c78759fb70f667f1f",
-  measurementId: "G-XKWGVV421X"
-};
+const firebaseConfig= environment.firebaseConfig;
 
 describe('CuentaPage', () => {
   let component: CuentaPage;
