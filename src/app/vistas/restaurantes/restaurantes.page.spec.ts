@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { RestaurantesPage } from './restaurantes.page';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -11,7 +11,7 @@ describe('RestaurantesPage', () => {
   let component: RestaurantesPage;
   let fixture: ComponentFixture<RestaurantesPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [RestaurantesPage],
       imports: [

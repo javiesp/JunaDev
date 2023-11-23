@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import {FireserviceService} from 'src/app/fireservice.service';
-import { DataService } from 'src/app/data.service';
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
+import { DataService } from 'src/app/servicios/data.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 

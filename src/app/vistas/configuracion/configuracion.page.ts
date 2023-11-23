@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FireserviceService } from 'src/app/fireservice.service';
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { GmapsService } from 'src/app/servicios/gmaps.service';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/servicios/data.service';
 
 @Component({
   selector: 'app-configuracion',

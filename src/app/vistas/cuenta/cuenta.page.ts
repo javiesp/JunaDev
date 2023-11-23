@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FireserviceService } from 'src/app/fireservice.service';
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/models';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {FireserviceService} from 'src/app/fireservice.service';
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
+
 
 
 
