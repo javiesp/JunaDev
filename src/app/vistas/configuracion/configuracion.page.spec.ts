@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { ConfiguracionPage } from './configuracion.page';
-import {FireserviceService} from 'src/app/fireservice.service';// Ajusta la ruta según tu estructura de archivos
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';

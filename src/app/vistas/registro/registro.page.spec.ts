@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { FireserviceService } from 'src/app/fireservice.service';
+import { FireserviceService } from 'src/app/servicios/fireservice.service';
 
 
 import { RegistroPage } from './registro.page';
