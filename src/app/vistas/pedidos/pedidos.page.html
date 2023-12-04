@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-item> Saldo cliente: {{saldoTotalCliente}}</ion-item>
   <ion-card *ngFor="let pedido of pedidos">
     <ion-card-header>
       <ion-card-title>{{ pedido.Pedido.restaurante }}</ion-card-title>
@@ -20,6 +21,8 @@
 
   <ion-item>
     Total: {{ calcularTotal() }}
+    <br>
+    Saldo final: {{ saldoFinal }}
   </ion-item>
 
   <ion-buttons>
@@ -27,7 +30,7 @@
       Cancelar compra
       <ion-icon name="close-outline" slot="end"></ion-icon>
     </ion-button>
-    <ion-button routerLink="/home">
+    <ion-button routerLink="/home" [disabled]="!compraValida" (click)="continuarCompra()">
       pagar
       <ion-icon name="card-outline" slot="end"></ion-icon>
     </ion-button>
