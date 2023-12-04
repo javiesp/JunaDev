@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { v4 as uuidv4 } from 'uuid'; // Importa uuidv4
 import { LoadingController } from '@ionic/angular';
+import * as Notiflix from 'notiflix';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { LoadingController } from '@ionic/angular';
 export class RestaurantesPage implements OnInit {
   restaurantes: any[];
   menuRestaurante: any[];
+  restaurantesFiltrados: any[] = [];
   restauranteSeleccionado: any;
   precioMenu: any;
   isModalOpen: boolean;
@@ -44,6 +46,7 @@ export class RestaurantesPage implements OnInit {
     carritoItemRef.update({ Pedido: pedido }); // Modifica para que se almacene bajo "Pedido"
     
     console.log('ID del pedido:', pedidoID, 'Pedido:', pedido,'user: ', usuarioID);
+    Notiflix.Notify.success(pedido + 'Agregado al carrito');
   }
   
 
@@ -57,7 +60,7 @@ export class RestaurantesPage implements OnInit {
       this.restauranteSeleccionado = restaurante.nombre;
       this.menuRestaurante = restaurante.menu;
       this.precioMenu = restaurante.precio;
-      this.isModalOpen = true; // Asegúrate de establecer el modal como abierto
+      this.isModalOpen = true; 
     }
 
   }
@@ -88,5 +91,18 @@ export class RestaurantesPage implements OnInit {
     });
   }
 
+  getItems(event: any) {
+    const terminoBusqueda = event.target.value.toLowerCase(); // Convertir a minúsculas directamente aquí
+  
+    if (terminoBusqueda && terminoBusqueda.trim() !== '') {
+      this.restaurantesFiltrados = this.restaurantes.filter(restaurante =>
+        restaurante.nombre && restaurante.nombre.toLowerCase().includes(terminoBusqueda)
+      );
+    } else {
+      this.restaurantesFiltrados = [...this.restaurantes];
+    }
+  }
+  
+  
   ngOnInit() {}
 }

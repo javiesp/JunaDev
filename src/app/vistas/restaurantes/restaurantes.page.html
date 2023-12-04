@@ -31,7 +31,7 @@
       </ion-row>
     </div>
     <div class="barra-busqueda ion-padding">
-      <ion-searchbar show-clear-button="always" clear-icon="close" (ionChange)="getItems($event)"></ion-searchbar>
+      <ion-searchbar show-clear-button="always" clear-icon="close" (ionInput)="getItems($event)"></ion-searchbar>
     </div>
   </ion-toolbar>
 </ion-header>
