@@ -67,8 +67,20 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
    
   },
-
+  {
+    path: 'valorar-restaurantes',
+    loadChildren: () => import('./vistas/valorar-restaurantes/valorar-restaurantes.module').then( m => m.ValorarRestaurantesPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
+    path: 'valorar-r2',
+    loadChildren: () => import('./vistas/valorar-r2/valorar-r2.module').then( m => m.ValorarR2PageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
   
+
+
+
 ];
 
 @NgModule({

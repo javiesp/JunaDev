@@ -12,11 +12,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment} from 'src/environments/environment';
+//import { DateAgoPipe } from '../app/vistas/pipes/date-ago.pipe';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot(),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFirestoreModule],
   
   providers: [

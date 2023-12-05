@@ -106,4 +106,9 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/registro']); // Redirige a la página de registro
   }
 
+  valorar() {
+    this.router.navigate(['/valorar-restaurantes']); // Redirige a la página de registro
+  }
+
+
 }
