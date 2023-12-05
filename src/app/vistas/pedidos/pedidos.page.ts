@@ -67,6 +67,8 @@ export class PedidosPage implements OnInit {
       });
   }
 
+
+
   //Calcula el total de la compra sumando los precios del carrito y valida si no supera el saldo total
   calcularTotal(): number {
     let total = 0;
@@ -88,12 +90,12 @@ export class PedidosPage implements OnInit {
           return total
         }
       });
-
-
     }
-  
     return total;
   }
+  
+
+
 
   continuarCompra(){
     if(this.compraValida = true){

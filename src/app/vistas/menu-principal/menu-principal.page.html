@@ -42,6 +42,7 @@
     <div class="banda-promos">
       <img src="assets/icon/1.jpg" alt="">
     </div>
+
     <div class="banda-etiquetas">
       <div class="topic" style="text-align: center; margin-top: 20px;">
         ¿Qué te gustaría ordenar?
@@ -64,24 +65,23 @@
       </ion-grid>
     </div>
   </div>
-  
-  <ion-card>
+
+  <ion-card *ngFor="let restaurante of restaurantes.slice(0, 3)">
+    <img [src]="restaurante.img" alt="{{ restaurante.nombre }}" />
     <ion-card-header style="text-align: center;">
-      <ion-card-title>Restaurantes JunaExpress</ion-card-title>
+      <ion-card-title>{{ restaurante.nombre }}</ion-card-title>
+      <ion-card-subtittle>{{ restaurante.especialidad }}</ion-card-subtittle>
     </ion-card-header>
     <ion-card-content>
-      <div class="container-rest">
-        <ion-list>
-          <ion-item *ngFor="let restaurante of restaurantes">
-            <img [src]="restaurante.img" alt="{{ restaurante.nombre }}">
-            <ion-label>{{ restaurante.nombre }} - Especialidad: {{ restaurante.especialidad }}</ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
+      <ion-tab-button routerLink="/restaurantes" fill="outline">visitar</ion-tab-button>
     </ion-card-content>
   </ion-card>
   
-
+  <div class="topic" style="text-align: center; margin-top: 20px;">
+    Tu ubicacion
+  </div>
+  <div class="map" #map>
+  </div><br>
 </ion-content>
 
 

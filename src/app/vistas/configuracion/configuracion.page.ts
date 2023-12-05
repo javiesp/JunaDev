@@ -24,6 +24,7 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
   mapClickListener: any;
   markerClickListener: any;
   markers: any[] = [];
+  themeToggle = false;
 
 
   constructor(
@@ -37,10 +38,39 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // Use matchMedia to check the user preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // Initialize the dark theme based on the initial
+    // value of the prefers-color-scheme media query
+    this.initializeDarkTheme(prefersDark.matches);
+    
+    // Listen for changes to the prefers-color-scheme media query
+    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
   }
 
   ngAfterViewInit() {
     this.cargarGMap();
+  }
+
+  initializeDarkTheme(isDark) {
+    this.themeToggle = isDark;
+    this.toggleDarkTheme(isDark);
+    console.log('initializeDarkTheme..')
+  }
+
+  // Listen for the toggle check/uncheck to toggle the dark theme
+  toggleChange(ev) {
+    this.toggleDarkTheme(ev.detail.checked);
+    console.log('toggleChange..')
+
+  }
+
+  // Add or remove the "dark" class on the document body
+  toggleDarkTheme(shouldAdd) {
+    document.body.classList.toggle('dark', shouldAdd);
+    console.log('toggleDarkTheme..')
+    
   }
 
   // Esta función se ejecuta cuando el usuario desea cerrar sesión.

@@ -126,3 +126,18 @@ ion-header{
   margin: 10px; 
   border-radius: 10px;
 }
+
+.map{
+  position: absolute;
+  height: 50%;
+  width: 40vh;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+  border-radius: 20px;
+  margin: 26px;
+}
+
+.map.visible{
+  opacity: 1;
+}
