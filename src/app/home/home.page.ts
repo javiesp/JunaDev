@@ -4,6 +4,7 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import * as Notiflix from 'notiflix';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class HomePage implements OnDestroy {
   scannedResult: any;
   content_visibility = '';
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
-  name: string;
+  name: string = '';
   nombre: string;
 
   constructor(
@@ -86,17 +87,20 @@ export class HomePage implements OnDestroy {
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
+    Notiflix.Notify.failure('No se ha modificado el metodo de pago');
   }
 
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
     Notiflix.Notify.success('Se ha camiado el metodo de pago');
+    this.nombre = this.name
+    console.log(this.nombre)
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.nombre = this.name
+      
     }
   } 
 

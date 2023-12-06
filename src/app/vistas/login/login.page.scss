@@ -5,7 +5,6 @@ ion-content {
   --background: linear-gradient(315deg, rgba(5, 58, 106, 1) 0%, rgba(17, 152, 210, 1) 100%),
     url("/assets/comia.jpg") no-repeat center center / cover;
   padding: 0;
-  font-family: 'Varela Round', sans-serif;
 }
 
 .login-section {
@@ -29,7 +28,7 @@ ion-content {
 .login-form {
   background-color: #fff;
   padding: 20px;
-  height: 65%;
+  height: 75%;
   border-top-left-radius: 46px;
   border-top-right-radius: 46px;
   border-bottom-left-radius: 46px;

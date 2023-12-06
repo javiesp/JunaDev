@@ -13,11 +13,13 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment} from 'src/environments/environment';
 import { DateAgoPipe } from './vistas/pipes/date-ago.pipe';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot(),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFirestoreModule],
+  imports: [FormsModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot(),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFirestoreModule],
   
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

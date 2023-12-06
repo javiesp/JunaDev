@@ -1,0 +1,67 @@
+ion-card {
+    width: 80%;
+    max-width: 400px;
+    margin: 5px auto;
+  }
+  
+  ion-card-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px 0;
+    background-color: #3498db;
+    color: white;
+  }
+  
+  ion-card-content {
+    padding: 15px;
+  }
+  
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .status-marker {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .status-marker span {
+    font-size: 10px;
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  
+  .in-preparation {
+    background-color: #f1c40f;
+  }
+  
+  .in-transit {
+    background-color: #e67e22;
+  }
+  
+  .delivered {
+    background-color: #2ecc71;
+  }
+  
+  .status-marker.active {
+    border-color: #3498db;
+    color: #3498db;
+  }
+  
+  .status-marker.active span {
+    display: block;
+  }
+  

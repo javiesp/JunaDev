@@ -14,17 +14,32 @@
 
 <ion-content>
 
-  <ion-buttons>
-    <ion-back-button>
-     <ion-title>Volver</ion-title>
-   </ion-back-button>
-  </ion-buttons>
+  <ion-card>
+    <ion-card-header>
+      Seguimiento de Pedido
+    </ion-card-header>
+    <ion-card-content>
+      <div class="status-bar">
+        <div class="status-marker in-preparation">
+          <span>En Preparación</span>
+        </div>
+        <div class="status-marker in-transit">
+          <span>En Camino</span>
+        </div>
+        <div class="status-marker delivered">
+          <span>Llegó a Destino</span>
+        </div>
+      </div>
+    </ion-card-content>
+    <ion-button 
+    expand="block" 
+    class="ion-margin" 
+    color="secondary"
+    (click)="valor()">Valorar restaurantes
+    </ion-button>
+  </ion-card>
+  
 
-  <ion-button 
-  expand="block" 
-  class="ion-margin" 
-  color="secondary"
-  (click)="valor()">Valorar restaurantes
-  </ion-button>
+
 
 </ion-content>
