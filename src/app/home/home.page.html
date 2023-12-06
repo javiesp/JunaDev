@@ -29,13 +29,15 @@
   
 
   <ion-item *ngIf="scannedResult">
-    <ion-label class="ion-text-wrap">Pago: {{scannedResult}}</ion-label>
+    <ion-label class="ion-text-wrap">Clave dinámica: {{scannedResult}}</ion-label>
   </ion-item>
   <!-- asd -->
   <div class="metodo-pago-container">
     <ion-card>
-      <h1>Modificar metodo de pago</h1>
-      <p>Nombre titular: {{nombre}}</p>
+      <div class="datos-container">
+        <h1>Modificar metodo de pago</h1>
+        <p>Nombre titular: {{nombre}}</p>
+      </div>
       <ion-button id="open-modal" expand="block">Modificar</ion-button>
     </ion-card>
   </div>
