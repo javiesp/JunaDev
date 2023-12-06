@@ -106,9 +106,8 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/registro']); // Redirige a la página de registro
   }
 
-  valor() {
-    this.router.navigate(['/valor-r']); // Redirige a la página de registro
-  }
+  
+
 
 
 

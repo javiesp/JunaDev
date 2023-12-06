@@ -14,9 +14,8 @@ export class SeguimientoPedidoPage implements OnInit {
 
   ngOnInit() {
   }
+  
   valor() {
     this.router.navigate(['/valor-r']); // Redirige a la página de registro
   }
-
-
 }

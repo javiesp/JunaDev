@@ -16,7 +16,6 @@ import { DateAgoPipe } from './vistas/pipes/date-ago.pipe';
 import { FormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [FormsModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot(),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFirestoreModule],
