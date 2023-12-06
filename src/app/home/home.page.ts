@@ -87,12 +87,12 @@ export class HomePage implements OnDestroy {
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
-    Notiflix.Notify.failure('No se ha modificado el metodo de pago');
+    Notiflix.Notify.failure('No se ha modificado el método de pago');
   }
 
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
-    Notiflix.Notify.success('Se ha camiado el metodo de pago');
+    Notiflix.Notify.success('Se ha cambiado el método de pago');
     this.nombre = this.name
     console.log(this.nombre)
   }
