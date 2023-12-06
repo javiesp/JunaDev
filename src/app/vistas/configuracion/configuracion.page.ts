@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { GmapsService } from 'src/app/servicios/gmaps.service';
 import { DataService } from 'src/app/servicios/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-configuracion',
@@ -12,7 +13,8 @@ import { DataService } from 'src/app/servicios/data.service';
   styleUrls: ['./configuracion.page.scss'],
 })
 export class ConfiguracionPage implements OnInit, OnDestroy {
-  modoNocturno: false; // Establece el valor por defecto a true para que el toggle esté activado
+  modoNocturno: boolean;
+  modoNocturnoSubscription: Subscription;
   userEmail: string;
   userName: string;
   creationTime: string; // Agrega una propiedad para la fecha de creación
@@ -40,17 +42,33 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
 
   toggleTheme(event: CustomEvent): void {
     this.modoNocturno = event.detail.checked;
-    document.body.setAttribute('color-theme', this.modoNocturno ? 'dark' : 'light');
+    this.dataService.setModoNocturno(this.modoNocturno);
+    this.actualizarEstiloBody();
   }
-
+  
   // Función para determinar la clase CSS según el modo nocturno
   getLinkClass(): string {
     return this.modoNocturno ? 'link-nocturno' : 'link-diurno';
   }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.modoNocturno = this.dataService.getModoNocturno();
+    this.actualizarEstiloBody();
+
+    this.modoNocturnoSubscription = this.dataService.getModoNocturnoObservable().subscribe(
+      (modoNocturno) => {
+        this.modoNocturno = modoNocturno;
+        this.actualizarEstiloBody();
+      }
+    );
   }
+
+  private actualizarEstiloBody(): void {
+    document.body.setAttribute('color-theme', this.modoNocturno ? 'dark' : 'light');
+  }
+  
+  
 
   ngAfterViewInit() {
     this.cargarGMap();
@@ -183,6 +201,7 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
     // this.googleMaps.event.removeAllListeners();
     if(this.mapClickListener) this.googleMaps.event.removeListener(this.mapClickListener);
     if(this.markerClickListener) this.googleMaps.event.removeListener(this.markerClickListener);
+    this.modoNocturnoSubscription.unsubscribe();
   }
 
 

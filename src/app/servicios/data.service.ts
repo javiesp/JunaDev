@@ -1,13 +1,26 @@
-// data.service.ts
-
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   private isStorageReady = false;
+  private modoNocturnoSubject = new BehaviorSubject<boolean>(false);
+
+  getModoNocturnoObservable(): Observable<boolean> {
+    return this.modoNocturnoSubject.asObservable();
+  }
+
+  getModoNocturno(): boolean {
+    return this.modoNocturnoSubject.value;
+  }
+
+  setModoNocturno(modoNocturno: boolean): void {
+    this.modoNocturnoSubject.next(modoNocturno);
+  }
+
 
   constructor(private storage: Storage) {
     this.initStorage();
@@ -19,8 +32,7 @@ export class DataService {
     this.storage = await this.storage.create();
     this.isStorageReady = true;
   }
-
-  // Guardar información del usuario en el almacenamiento local
+// Guardar información del usuario en el almacenamiento local
   async guardarUsuario(usuario: any): Promise<void> {
     // Verifica si el almacenamiento está listo antes de intentar guardar
     if (!this.isStorageReady) {
