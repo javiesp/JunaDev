@@ -66,7 +66,11 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
    
+  },  {
+    path: 'seguimiento-pedido',
+    loadChildren: () => import('./vistas/seguimiento-pedido/seguimiento-pedido.module').then( m => m.SeguimientoPedidoPageModule)
   },
+
 
   
 ];
