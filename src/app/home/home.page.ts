@@ -105,4 +105,6 @@ export class HomePage implements OnDestroy {
     this.router.navigate(['/seguimiento-pedido']);
   }
 
+  
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seguimiento-pedido',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeguimientoPedidoPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit() {
   }
+  valor() {
+    this.router.navigate(['/valor-r']); // Redirige a la página de registro
+  }
+
 
 }
