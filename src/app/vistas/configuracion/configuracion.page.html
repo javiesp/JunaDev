@@ -5,25 +5,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [class.modo-nocturno]="modoNocturno">
   <ion-list>
     <ion-item>
-      <ion-label>Modo noche
-      </ion-label>
-      <ion-toggle slot="end" [(ngModel)]="themeToggle" (ionChange)="toggleChange($event)"></ion-toggle>
+      <ion-label>Modo noche</ion-label>
+      <ion-toggle slot="end" (ionChange)="toggleTheme($event)"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Cuenta</ion-label>
-      <ion-router-link style="color: black;"   routerLink="/restaurantes">Idioma</ion-router-link>
+      <ion-router-link [class]="getLinkClass()" routerLink="/restaurantes">Idioma</ion-router-link>
     </ion-item>
     <ion-item>
-      <ion-router-link style="color: black;"   routerLink="/restaurantes">Acerca de</ion-router-link>
+      <ion-router-link [class]="getLinkClass()" routerLink="/restaurantes">Acerca de</ion-router-link>
     </ion-item>
     <ion-item>
-      <ion-router-link style="color: black;"   routerLink="/restaurantes">Actualización de la app</ion-router-link>
+      <ion-router-link [class]="getLinkClass()" routerLink="/restaurantes">Actualización de la app</ion-router-link>
     </ion-item>
   </ion-list>
-  <ion-button expand="block" (click)="logout()" color="danger"><strong>Cerrar sesión</strong></ion-button>
+  <ion-button expand="block" (click)="logout()" color="danger" fill="outline">Cerrar sesión</ion-button>
 
   <div class="map" #map>
 

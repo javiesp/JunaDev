@@ -12,6 +12,7 @@ import { DataService } from 'src/app/servicios/data.service';
   styleUrls: ['./configuracion.page.scss'],
 })
 export class ConfiguracionPage implements OnInit, OnDestroy {
+  modoNocturno = false;
   userEmail: string;
   userName: string;
   creationTime: string; // Agrega una propiedad para la fecha de creación
@@ -24,10 +25,10 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
   mapClickListener: any;
   markerClickListener: any;
   markers: any[] = [];
-  themeToggle = false;
 
 
   constructor(
+    private dataService: DataService,
     public fireservice: FireserviceService,
     private router: Router,
     private afAuth: AngularFireAuth,
@@ -37,40 +38,22 @@ export class ConfiguracionPage implements OnInit, OnDestroy {
     private actionSheetCtrl: ActionSheetController
   ) { }
 
-  ngOnInit() {
-    // Use matchMedia to check the user preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  toggleTheme(event: CustomEvent): void {
+    this.modoNocturno = event.detail.checked;
+    document.body.setAttribute('color-theme', this.modoNocturno ? 'dark' : 'light');
+  }
 
-    // Initialize the dark theme based on the initial
-    // value of the prefers-color-scheme media query
-    this.initializeDarkTheme(prefersDark.matches);
-    
-    // Listen for changes to the prefers-color-scheme media query
-    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
+  // Función para determinar la clase CSS según el modo nocturno
+  getLinkClass(): string {
+    return this.modoNocturno ? 'link-nocturno' : 'link-diurno';
+  }
+
+
+  ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.cargarGMap();
-  }
-
-  initializeDarkTheme(isDark) {
-    this.themeToggle = isDark;
-    this.toggleDarkTheme(isDark);
-    console.log('initializeDarkTheme..')
-  }
-
-  // Listen for the toggle check/uncheck to toggle the dark theme
-  toggleChange(ev) {
-    this.toggleDarkTheme(ev.detail.checked);
-    console.log('toggleChange..')
-
-  }
-
-  // Add or remove the "dark" class on the document body
-  toggleDarkTheme(shouldAdd) {
-    document.body.classList.toggle('dark', shouldAdd);
-    console.log('toggleDarkTheme..')
-    
   }
 
   // Esta función se ejecuta cuando el usuario desea cerrar sesión.

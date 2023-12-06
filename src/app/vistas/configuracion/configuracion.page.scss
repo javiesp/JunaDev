@@ -10,3 +10,22 @@
 .map.visible{
     opacity: 1;
 }
+
+ion-content {
+    // Estilos comunes aquí...
+
+    &.modo-nocturno {
+      // Estilos específicos para el modo nocturno aquí...
+      background-color: #333; // Ejemplo: fondo oscuro en modo nocturno
+      color: #fff; // Ejemplo: texto blanco en modo nocturno
+    }
+
+    // Definición de clases para enlaces
+    .link-diurno {
+      color: black; // Estilos de enlaces en modo diurno
+    }
+
+    .link-nocturno {
+      color: white; // Estilos de enlaces en modo nocturno
+    }
+  }
