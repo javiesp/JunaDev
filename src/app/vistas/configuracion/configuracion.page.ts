@@ -12,7 +12,7 @@ import { DataService } from 'src/app/servicios/data.service';
   styleUrls: ['./configuracion.page.scss'],
 })
 export class ConfiguracionPage implements OnInit, OnDestroy {
-  modoNocturno = false;
+  modoNocturno: false; // Establece el valor por defecto a true para que el toggle esté activado
   userEmail: string;
   userName: string;
   creationTime: string; // Agrega una propiedad para la fecha de creación
