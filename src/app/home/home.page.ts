@@ -1,6 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, ViewChild  } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+import * as Notiflix from 'notiflix';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +12,14 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnDestroy {
+  @ViewChild(IonModal) modal: IonModal;
 
-
-  qrCodeString = 'Clave dinámica';
+  qrCodeString = '4563';
   scannedResult: any;
   content_visibility = '';
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name: string;
+  nombre: string;
 
   constructor(
     private router: Router,
@@ -77,8 +84,25 @@ export class HomePage implements OnDestroy {
       this.stopScan();
   }
 
-  valor() {
-    this.router.navigate(['/valor-r']); // Redirige a la página de registro
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+    Notiflix.Notify.success('Se ha camiado el metodo de pago');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.nombre = this.name
+    }
+  } 
+
+  pagarCarrito(){
+    Notiflix.Notify.success('Pago realizado');
+    this.router.navigate(['/seguimiento-pedido']);
   }
 
 }

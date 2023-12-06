@@ -66,12 +66,16 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
    
+  },  {
+    path: 'seguimiento-pedido',
+    loadChildren: () => import('./vistas/seguimiento-pedido/seguimiento-pedido.module').then( m => m.SeguimientoPedidoPageModule)
   },
   {
     path: 'valor-r',
     loadChildren: () => import('./vistas/valor-r/valor-r.module').then( m => m.ValorRPageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
+
 
 
 

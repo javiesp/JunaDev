@@ -37,6 +37,69 @@
     <ion-label class="ion-text-wrap">Pago: {{scannedResult}}</ion-label>
   </ion-item>
   <!-- asd -->
+  <div class="metodo-pago-container">
+    <ion-card>
+      <h1>Modificar metodo de pago</h1>
+      <p>Nombre titular: {{nombre}}</p>
+      <ion-button id="open-modal" expand="block">Modificar</ion-button>
+    </ion-card>
+  </div>
+
+  <ion-button id="open-modal" expand="block" (click)="pagarCarrito()">Pagar</ion-button>
+
+
+
+
+  <!--ionic modal-->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Ingrese datos</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="container">
+          <h2>Ingresa los datos de tu tarjeta</h2>
+          <form>
+            <div class="form-group">
+              <label for="card-number">Número de Tarjeta:</label>
+              <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+            </div>
+            <div class="form-group">
+              <label for="cardholder-name" [(ngModel)]="name">Nombre del Titular:</label>
+              <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Nombre Apellido" required>
+            </div>
+            <div class="form-group">
+              <label for="expiry-date">Fecha de Expiración:</label>
+              <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="number" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+            <div class="form-group">
+              <label for="card-type">Tipo de Tarjeta:</label>
+              <select id="card-type" name="card-type" required>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">American Express</option>
+              </select>
+            </div>
+            <div class="form-group">
+            </div>
+          </form>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>
 <footer class="footer">
   <!-- ion tab -->
