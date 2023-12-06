@@ -96,11 +96,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.html?ngResource */ 3853);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 1020);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _capacitor_community_barcode_scanner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor-community/barcode-scanner */ 8353);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notiflix */ 6977);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notiflix__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
+
+
+
 
 
 
@@ -108,9 +115,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-  constructor() {
-    this.qrCodeString = 'Clave dinámica';
+  constructor(router) {
+    this.router = router;
+    this.qrCodeString = '4563';
     this.content_visibility = '';
+    this.message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+    this.name = '';
   } // Esta función verifica si la aplicación tiene permiso para acceder al escáner de códigos de barras.
   // Devuelve `true` si el permiso ha sido otorgado y `false` en caso contrario.
 
@@ -184,11 +194,42 @@ let HomePage = class HomePage {
     this.stopScan();
   }
 
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+    notiflix__WEBPACK_IMPORTED_MODULE_4__.Notify.failure('No se ha modificado el método de pago');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+    notiflix__WEBPACK_IMPORTED_MODULE_4__.Notify.success('Se ha cambiado el método de pago');
+    this.nombre = this.name;
+    console.log(this.nombre);
+  }
+
+  onWillDismiss(event) {
+    const ev = event;
+
+    if (ev.detail.role === 'confirm') {}
+  }
+
+  pagarCarrito() {
+    notiflix__WEBPACK_IMPORTED_MODULE_4__.Notify.success('Pago realizado');
+    this.router.navigate(['/seguimiento-pedido']);
+  }
+
 };
 
-HomePage.ctorParameters = () => [];
+HomePage.ctorParameters = () => [{
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
+}];
 
-HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+HomePage.propDecorators = {
+  modal: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild,
+    args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonModal]
+  }]
+};
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
   selector: 'app-home',
   template: _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__]
@@ -3200,7 +3241,7 @@ module.exports = function encodeUtf8(input) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = "ion-header {\n  background: linear-gradient(315deg, rgb(5, 58, 106) 0%, rgb(17, 152, 210) 100%);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksK0VBQUE7QUFDSiIsImZpbGUiOiJob21lLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1oZWFkZXJ7XHJcbiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMzE1ZGVnLCByZ2JhKDUsIDU4LCAxMDYsIDEpIDAlLCByZ2JhKDE3LCAxNTIsIDIxMCwgMSkgMTAwJSksO1xyXG59Il19 */";
+module.exports = "ion-header {\n  background: linear-gradient(315deg, rgb(5, 58, 106) 0%, rgb(17, 152, 210) 100%);\n}\n\n.metodo-pago-container {\n  margin-left: 10px;\n}\n\n.container {\n  width: 400px;\n  margin: 0 auto;\n  background-color: #fff;\n  padding: 20px;\n  border-radius: 8px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n}\n\n.form-group {\n  margin-bottom: 15px;\n}\n\n.form-group label {\n  display: block;\n  font-weight: bold;\n  margin-bottom: 5px;\n}\n\n.form-group input[type=text],\n.form-group input[type=number],\n.form-group select {\n  width: calc(100% - 12px);\n  padding: 8px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n}\n\n.form-group select {\n  width: 100%;\n}\n\n.form-group input[type=submit] {\n  background-color: #4CAF50;\n  color: white;\n  border: none;\n  padding: 10px 20px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.form-group input[type=submit]:hover {\n  background-color: #45a049;\n}\n\n.datos-container {\n  margin: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksK0VBQUE7QUFDSjs7QUFFQTtFQUNJLGlCQUFBO0FBQ0o7O0FBRUE7RUFDSSxZQUFBO0VBQ0EsY0FBQTtFQUNBLHNCQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0EsdUNBQUE7QUFDSjs7QUFFRTtFQUNFLG1CQUFBO0FBQ0o7O0FBRUU7RUFDRSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQUNKOztBQUVFOzs7RUFHRSx3QkFBQTtFQUNBLFlBQUE7RUFDQSxzQkFBQTtFQUNBLGtCQUFBO0FBQ0o7O0FBRUU7RUFDRSxXQUFBO0FBQ0o7O0FBRUU7RUFDRSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0Esa0JBQUE7RUFDQSxlQUFBO0FBQ0o7O0FBRUU7RUFDRSx5QkFBQTtBQUNKOztBQUVBO0VBQ0UsV0FBQTtBQUNGIiwiZmlsZSI6ImhvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWhlYWRlcntcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgzMTVkZWcsIHJnYmEoNSwgNTgsIDEwNiwgMSkgMCUsIHJnYmEoMTcsIDE1MiwgMjEwLCAxKSAxMDAlKSw7XHJcbn1cclxuXHJcbi5tZXRvZG8tcGFnby1jb250YWluZXJ7XHJcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcclxufVxyXG5cclxuLmNvbnRhaW5lciB7XHJcbiAgICB3aWR0aDogNDAwcHg7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xyXG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xyXG4gIH1cclxuXHJcbiAgLmZvcm0tZ3JvdXAge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTVweDtcclxuICB9XHJcblxyXG4gIC5mb3JtLWdyb3VwIGxhYmVsIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICBtYXJnaW4tYm90dG9tOiA1cHg7XHJcbiAgfVxyXG5cclxuICAuZm9ybS1ncm91cCBpbnB1dFt0eXBlPVwidGV4dFwiXSwgXHJcbiAgLmZvcm0tZ3JvdXAgaW5wdXRbdHlwZT1cIm51bWJlclwiXSwgXHJcbiAgLmZvcm0tZ3JvdXAgc2VsZWN0IHtcclxuICAgIHdpZHRoOiBjYWxjKDEwMCUgLSAxMnB4KTtcclxuICAgIHBhZGRpbmc6IDhweDtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XHJcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XHJcbiAgfVxyXG5cclxuICAuZm9ybS1ncm91cCBzZWxlY3Qge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfVxyXG5cclxuICAuZm9ybS1ncm91cCBpbnB1dFt0eXBlPVwic3VibWl0XCJdIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM0Q0FGNTA7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBmb250LXNpemU6IDE2cHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgfVxyXG5cclxuICAuZm9ybS1ncm91cCBpbnB1dFt0eXBlPVwic3VibWl0XCJdOmhvdmVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM0NWEwNDk7XHJcbiAgfVxyXG5cclxuLmRhdG9zLWNvbnRhaW5lcntcclxuICBtYXJnaW46IDVweDtcclxufSJdfQ== */";
 
 /***/ }),
 
@@ -3211,7 +3252,7 @@ module.exports = "ion-header {\n  background: linear-gradient(315deg, rgb(5, 58,
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header [style.visibility]=\"content_visibility\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Pago\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [style.visibility]=\"content_visibility\">\r\n\r\n  <ion-card class=\"ion-text-center\">\r\n    <ion-card-content>\r\n      <qrcode \r\n        [qrdata]=\"qrCodeString\" \r\n        [width]=\"256\" \r\n        [errorCorrectionLevel]=\"'M'\">\r\n      </qrcode>\r\n    </ion-card-content>\r\n  </ion-card>\r\n\r\n  <ion-button \r\n    expand=\"block\" \r\n    class=\"ion-margin\" \r\n    (click)=\"startScan()\">\r\n    Escanear código vendedor\r\n  </ion-button>\r\n\r\n  <ion-item *ngIf=\"scannedResult\">\r\n    <ion-label class=\"ion-text-wrap\">Pago: {{scannedResult}}</ion-label>\r\n  </ion-item>\r\n  <!-- asd -->\r\n</ion-content>\r\n<footer class=\"footer\">\r\n  <!-- ion tab -->\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"cuenta\" routerLink=\"/cuenta\">\r\n        <ion-icon name=\"person-outline\"></ion-icon>\r\n        Cuenta\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"menu\" routerLink=\"/menu-principal\">\r\n        <ion-icon name=\"home-outline\"></ion-icon>\r\n        Menú\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"Favoritos\">\r\n        <ion-icon name=\"pizza-outline\"></ion-icon>\r\n        Pedidos\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"restaurant\" routerLink=\"/restaurantes\">\r\n        <ion-icon name=\"restaurant-outline\"></ion-icon>\r\n        Restaurantes\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"wallet\" routerLink=\"/home\">\r\n        <ion-icon name=\"wallet\"></ion-icon>\r\n        Pago\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n</footer>";
+module.exports = "<ion-header [style.visibility]=\"content_visibility\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Pago\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [style.visibility]=\"content_visibility\">\r\n\r\n  <ion-card class=\"ion-text-center\">\r\n    <ion-card-content>\r\n      <qrcode \r\n        [qrdata]=\"qrCodeString\" \r\n        [width]=\"256\" \r\n        [errorCorrectionLevel]=\"'M'\">\r\n      </qrcode>\r\n    </ion-card-content>\r\n  </ion-card>\r\n\r\n  <ion-button\r\n    expand=\"block\" \r\n    class=\"ion-margin\" \r\n    (click)=\"startScan()\">\r\n    Escanear código vendedor\r\n  </ion-button>\r\n\r\n  \r\n\r\n  <ion-item *ngIf=\"scannedResult\">\r\n    <ion-label class=\"ion-text-wrap\">Clave dinámica: {{scannedResult}}</ion-label>\r\n  </ion-item>\r\n  <!-- asd -->\r\n  <div class=\"metodo-pago-container\">\r\n    <ion-card>\r\n      <div class=\"datos-container\">\r\n        <h1>Modificar método de pago</h1>\r\n        <p>Nombre titular: {{nombre}}</p>\r\n      </div>\r\n      <ion-button id=\"open-modal\" expand=\"block\">Modificar</ion-button>\r\n    </ion-card>\r\n  </div>\r\n\r\n  <ion-button id=\"open-modal\" expand=\"block\" (click)=\"pagarCarrito()\">Pagar</ion-button>\r\n\r\n\r\n  <ion-modal trigger=\"open-modal\" (willDismiss)=\"onWillDismiss($event)\">\r\n    <ng-template>\r\n      <ion-header>\r\n        <ion-toolbar>\r\n          <ion-buttons slot=\"start\">\r\n            <ion-button (click)=\"cancel()\">Cancelar</ion-button>\r\n          </ion-buttons>\r\n          <ion-title>Ingrese datos</ion-title>\r\n          <ion-buttons slot=\"end\">\r\n            <ion-button (click)=\"confirm()\" [strong]=\"true\">Confirmar</ion-button>\r\n          </ion-buttons>\r\n        </ion-toolbar>\r\n      </ion-header>\r\n      <ion-content class=\"ion-padding\">\r\n        <div class=\"container\">\r\n          <h2>Ingresa los datos de tu tarjeta</h2>\r\n          <form #myForm=\"ngForm\">\r\n            <div class=\"form-group\">\r\n              <label for=\"card-number\">Número de Tarjeta:</label>\r\n              <input type=\"text\" id=\"card-number\" name=\"cardNumber\" placeholder=\"1234 5678 9012 3456\" required>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"cardholder-name\">Nombre del Titular:</label>\r\n              <input type=\"text\" id=\"cardholder-name\" name=\"cardholderName\" placeholder=\"Nombre Apellido\" required [(ngModel)]=\"name\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"expiry-date\">Fecha de Expiración:</label>\r\n              <input type=\"text\" id=\"expiry-date\" name=\"expiryDate\" placeholder=\"MM/AA\" required>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"cvv\">CVV:</label>\r\n              <input type=\"number\" id=\"cvv\" name=\"cvv\" placeholder=\"123\" required>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"card-type\">Tipo de Tarjeta:</label>\r\n              <select id=\"card-type\" name=\"cardType\" required>\r\n                <option value=\"visa\">Visa</option>\r\n                <option value=\"mastercard\">Mastercard</option>\r\n                <option value=\"amex\">American Express</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <!-- Otros campos si los hubiera... -->\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </ion-content>\r\n    </ng-template>\r\n  </ion-modal>\r\n  \r\n</ion-content>\r\n<footer class=\"footer\">\r\n  <!-- ion tab -->\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"cuenta\" routerLink=\"/cuenta\">\r\n        <ion-icon name=\"person-outline\"></ion-icon>\r\n        Cuenta\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"menu\" routerLink=\"/menu-principal\">\r\n        <ion-icon name=\"home-outline\"></ion-icon>\r\n        Menú\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"Favoritos\">\r\n        <ion-icon name=\"pizza-outline\"></ion-icon>\r\n        Pedidos\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"restaurant\" routerLink=\"/restaurantes\">\r\n        <ion-icon name=\"restaurant-outline\"></ion-icon>\r\n        Restaurantes\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"wallet\" routerLink=\"/home\">\r\n        <ion-icon name=\"wallet\"></ion-icon>\r\n        Pago\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n</footer>";
 
 /***/ }),
 

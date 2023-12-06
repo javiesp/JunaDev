@@ -1,10 +1,103 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
-/***/ 9792:
-/*!****************************************!*\
-  !*** ./src/app/fireservice.service.ts ***!
-  \****************************************/
+/***/ 625:
+/*!*******************************************!*\
+  !*** ./src/app/servicios/data.service.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataService": () => (/* binding */ DataService)
+/* harmony export */ });
+/* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
+
+// data.service.ts
+
+
+
+let DataService = class DataService {
+  constructor(storage) {
+    this.storage = storage;
+    this.isStorageReady = false;
+    this.initStorage();
+  } // Inicializa el almacenamiento local
+
+
+  initStorage() {
+    var _this = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Usa el método create() para asegurarte de que la base de datos está lista
+      _this.storage = yield _this.storage.create();
+      _this.isStorageReady = true;
+    })();
+  } // Guardar información del usuario en el almacenamiento local
+
+
+  guardarUsuario(usuario) {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar guardar
+      if (!_this2.isStorageReady) {
+        yield _this2.initStorage();
+      }
+
+      yield _this2.storage.set('usuario', JSON.stringify(usuario));
+    })();
+  } // Obtener información del usuario desde el almacenamiento local
+
+
+  obtenerUsuario() {
+    var _this3 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar obtener
+      if (!_this3.isStorageReady) {
+        yield _this3.initStorage();
+      }
+
+      const usuario = yield _this3.storage.get('usuario');
+      return usuario ? JSON.parse(usuario) : null;
+    })();
+  } // Limpiar la información del usuario al cerrar sesión
+
+
+  cerrarSesion() {
+    var _this4 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Verifica si el almacenamiento está listo antes de intentar eliminar
+      if (!_this4.isStorageReady) {
+        yield _this4.initStorage();
+      }
+
+      yield _this4.storage.remove('usuario');
+    })();
+  }
+
+};
+
+DataService.ctorParameters = () => [{
+  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__.Storage
+}];
+
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+  providedIn: 'root'
+})], DataService);
+
+
+/***/ }),
+
+/***/ 944:
+/*!**************************************************!*\
+  !*** ./src/app/servicios/fireservice.service.ts ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -53,7 +146,8 @@ let FireserviceService = class FireserviceService {
       try {
         return _this.auth.sendPasswordResetEmail(email);
       } catch (error) {
-        console.log(error);
+        console.error('Error al restablecer la contraseña:', error);
+        throw error;
       }
     })();
   }
@@ -94,6 +188,64 @@ FireserviceService.ctorParameters = () => [{
 FireserviceService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
   providedIn: 'root'
 })], FireserviceService);
+
+
+/***/ }),
+
+/***/ 5953:
+/*!********************************************!*\
+  !*** ./src/app/servicios/gmaps.service.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GmapsService": () => (/* binding */ GmapsService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 2340);
+
+
+
+let GmapsService = class GmapsService {
+  constructor() {} // Funcion para cargar api google maps
+
+
+  loadGoogleMaps() {
+    const win = window;
+    const gModule = win.google;
+
+    if (gModule && gModule.maps) {
+      return Promise.resolve(gModule.maps);
+    }
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.googleMapsApiKey;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        const loadedGoogleModule = win.google;
+
+        if (loadedGoogleModule && loadedGoogleModule.maps) {
+          resolve(loadedGoogleModule.maps);
+        } else {
+          reject('Google Map SDK is not Available');
+        }
+      };
+    });
+  }
+
+};
+
+GmapsService.ctorParameters = () => [];
+
+GmapsService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+  providedIn: 'root'
+})], GmapsService);
 
 
 /***/ }),
