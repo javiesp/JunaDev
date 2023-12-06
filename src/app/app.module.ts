@@ -12,7 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment} from 'src/environments/environment';
-
+import { DateAgoPipe } from './vistas/pipes/date-ago.pipe';
 
 
 @NgModule({

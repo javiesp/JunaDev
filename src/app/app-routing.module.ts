@@ -67,6 +67,14 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
    
   },
+  {
+    path: 'valor-r',
+    loadChildren: () => import('./vistas/valor-r/valor-r.module').then( m => m.ValorRPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
+
+
+
 
   
 ];

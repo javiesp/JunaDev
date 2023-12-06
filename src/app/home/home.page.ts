@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
@@ -14,6 +15,7 @@ export class HomePage implements OnDestroy {
   content_visibility = '';
 
   constructor(
+    private router: Router,
     // private barcodeScanner: BarcodeScanner
     ) {}
 
@@ -73,6 +75,10 @@ export class HomePage implements OnDestroy {
   // Asegura que el escaneo se detenga cuando la página se destruye.
   ngOnDestroy(): void {
       this.stopScan();
+  }
+
+  valor() {
+    this.router.navigate(['/valor-r']); // Redirige a la página de registro
   }
 
 }

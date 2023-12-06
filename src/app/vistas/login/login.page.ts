@@ -106,4 +106,6 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/registro']); // Redirige a la página de registro
   }
 
+
+
 }
