@@ -81,6 +81,8 @@ ion-header{
     margin-left: 10px; 
     font-weight: bold;
     color: #cccccc;
+    
+    
   }
   
   .slide-comidas img{
@@ -130,12 +132,14 @@ ion-header{
 .map{
   position: absolute;
   height: 50%;
-  width: 40vh;
+  width: 70%;
   background-color: transparent;
   opacity: 0;
   transition: opacity 150ms ease-in;
   border-radius: 20px;
   margin: 26px;
+  margin-bottom: 100px;
+ 
 }
 
 .map.visible{

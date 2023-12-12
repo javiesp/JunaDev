@@ -46,7 +46,7 @@ export class RestaurantesPage implements OnInit {
     carritoItemRef.update({ Pedido: pedido }); // Modifica para que se almacene bajo "Pedido"
     
     console.log('ID del pedido:', pedidoID, 'Pedido:', pedido,'user: ', usuarioID);
-    Notiflix.Notify.success(pedido + 'Agregado al carrito');
+    Notiflix.Notify.success('Agregado al carrito');
   }
   
 

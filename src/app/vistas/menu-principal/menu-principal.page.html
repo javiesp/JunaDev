@@ -70,7 +70,7 @@
     <img [src]="restaurante.img" alt="{{ restaurante.nombre }}" />
     <ion-card-header style="text-align: center;">
       <ion-card-title>{{ restaurante.nombre }}</ion-card-title>
-      <ion-card-subtittle>{{ restaurante.especialidad }}</ion-card-subtittle>
+      <ion-card-subtitle>{{ restaurante.especialidad }}</ion-card-subtitle> <!-- Corregir la ortografía aquí -->
     </ion-card-header>
     <ion-card-content>
       <ion-tab-button routerLink="/restaurantes" fill="outline">visitar</ion-tab-button>
@@ -79,11 +79,10 @@
   
   <div class="topic" style="text-align: center; margin-top: 20px;">
     <strong>Tu ubicación</strong>
-    <div class="map" #map>
-    </div><br>
+    <div class="map" #map></div>
   </div>
-
 </ion-content>
+
 
 
 <footer class="footer">
