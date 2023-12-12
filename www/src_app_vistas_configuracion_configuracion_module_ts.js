@@ -122,7 +122,6 @@ let ConfiguracionPage = class ConfiguracionPage {
     this.gmaps = gmaps;
     this.renderer = renderer;
     this.actionSheetCtrl = actionSheetCtrl;
-    this.modoNocturno = false;
     this.center = {
       lat: -33.59792458336969,
       lng: -70.70543417692222
@@ -132,7 +131,8 @@ let ConfiguracionPage = class ConfiguracionPage {
 
   toggleTheme(event) {
     this.modoNocturno = event.detail.checked;
-    document.body.setAttribute('color-theme', this.modoNocturno ? 'dark' : 'light');
+    this.dataService.setModoNocturno(this.modoNocturno);
+    this.actualizarEstiloBody();
   } // Función para determinar la clase CSS según el modo nocturno
 
 
@@ -140,7 +140,18 @@ let ConfiguracionPage = class ConfiguracionPage {
     return this.modoNocturno ? 'link-nocturno' : 'link-diurno';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.modoNocturno = this.dataService.getModoNocturno();
+    this.actualizarEstiloBody();
+    this.modoNocturnoSubscription = this.dataService.getModoNocturnoObservable().subscribe(modoNocturno => {
+      this.modoNocturno = modoNocturno;
+      this.actualizarEstiloBody();
+    });
+  }
+
+  actualizarEstiloBody() {
+    document.body.setAttribute('color-theme', this.modoNocturno ? 'dark' : 'light');
+  }
 
   ngAfterViewInit() {
     this.cargarGMap();
@@ -285,6 +296,7 @@ let ConfiguracionPage = class ConfiguracionPage {
     // this.googleMaps.event.removeAllListeners();
     if (this.mapClickListener) this.googleMaps.event.removeListener(this.mapClickListener);
     if (this.markerClickListener) this.googleMaps.event.removeListener(this.markerClickListener);
+    this.modoNocturnoSubscription.unsubscribe();
   }
 
 };
@@ -330,7 +342,7 @@ ConfiguracionPage = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(0,_angu
   \*************************************************************************/
 /***/ ((module) => {
 
-module.exports = ".map {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  background-color: transparent;\n  opacity: 0;\n  transition: opacity 150ms ease-in;\n}\n\n.map.visible {\n  opacity: 1;\n}\n\nion-content.modo-nocturno {\n  background-color: #333;\n  color: #fff;\n}\n\nion-content .link-diurno {\n  color: black;\n}\n\nion-content .link-nocturno {\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbmZpZ3VyYWNpb24ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLDZCQUFBO0VBQ0EsVUFBQTtFQUNBLGlDQUFBO0FBQ0o7O0FBRUE7RUFDSSxVQUFBO0FBQ0o7O0FBS0k7RUFFRSxzQkFBQTtFQUNBLFdBQUE7QUFITjs7QUFPSTtFQUNFLFlBQUE7QUFMTjs7QUFRSTtFQUNFLFlBQUE7QUFOTiIsImZpbGUiOiJjb25maWd1cmFjaW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMTUwbXMgZWFzZS1pbjtcclxufVxyXG5cclxuLm1hcC52aXNpYmxle1xyXG4gICAgb3BhY2l0eTogMTtcclxufVxyXG5cclxuaW9uLWNvbnRlbnQge1xyXG4gICAgLy8gRXN0aWxvcyBjb211bmVzIGFxdcOtLi4uXHJcblxyXG4gICAgJi5tb2RvLW5vY3R1cm5vIHtcclxuICAgICAgLy8gRXN0aWxvcyBlc3BlY8OtZmljb3MgcGFyYSBlbCBtb2RvIG5vY3R1cm5vIGFxdcOtLi4uXHJcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7IC8vIEVqZW1wbG86IGZvbmRvIG9zY3VybyBlbiBtb2RvIG5vY3R1cm5vXHJcbiAgICAgIGNvbG9yOiAjZmZmOyAvLyBFamVtcGxvOiB0ZXh0byBibGFuY28gZW4gbW9kbyBub2N0dXJub1xyXG4gICAgfVxyXG5cclxuICAgIC8vIERlZmluaWNpw7NuIGRlIGNsYXNlcyBwYXJhIGVubGFjZXNcclxuICAgIC5saW5rLWRpdXJubyB7XHJcbiAgICAgIGNvbG9yOiBibGFjazsgLy8gRXN0aWxvcyBkZSBlbmxhY2VzIGVuIG1vZG8gZGl1cm5vXHJcbiAgICB9XHJcblxyXG4gICAgLmxpbmstbm9jdHVybm8ge1xyXG4gICAgICBjb2xvcjogd2hpdGU7IC8vIEVzdGlsb3MgZGUgZW5sYWNlcyBlbiBtb2RvIG5vY3R1cm5vXHJcbiAgICB9XHJcbiAgfSJdfQ== */";
+module.exports = ".map {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  background-color: transparent;\n  opacity: 0;\n  transition: opacity 150ms ease-in;\n}\n\n.map.visible {\n  opacity: 1;\n}\n\nion-content.modo-nocturno {\n  background-color: #333;\n  color: #fff;\n}\n\nion-content .link-diurno {\n  color: black;\n}\n\nion-content .link-nocturno {\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbmZpZ3VyYWNpb24ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLDZCQUFBO0VBQ0EsVUFBQTtFQUNBLGlDQUFBO0FBQ0o7O0FBRUE7RUFDSSxVQUFBO0FBQ0o7O0FBS0k7RUFFRSxzQkFBQTtFQUNBLFdBQUE7QUFITjs7QUFPSTtFQUNFLFlBQUE7QUFMTjs7QUFRSTtFQUNFLFlBQUE7QUFOTiIsImZpbGUiOiJjb25maWd1cmFjaW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMTUwbXMgZWFzZS1pbjtcclxufVxyXG5cclxuLm1hcC52aXNpYmxle1xyXG4gICAgb3BhY2l0eTogMTtcclxufVxyXG5cclxuaW9uLWNvbnRlbnQge1xyXG4gICAgLy8gRXN0aWxvcyBjb211bmVzIGFxdcOtLi4uXHJcblxyXG4gICAgJi5tb2RvLW5vY3R1cm5vIHtcclxuICAgICAgLy8gRXN0aWxvcyBlc3BlY8OtZmljb3MgcGFyYSBlbCBtb2RvIG5vY3R1cm5vIGFxdcOtLi4uXHJcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7IC8vIEVqZW1wbG86IGZvbmRvIG9zY3VybyBlbiBtb2RvIG5vY3R1cm5vXHJcbiAgICAgIGNvbG9yOiAjZmZmOyAvLyBFamVtcGxvOiB0ZXh0byBibGFuY28gZW4gbW9kbyBub2N0dXJub1xyXG4gICAgfVxyXG5cclxuICAgIC8vIERlZmluaWNpw7NuIGRlIGNsYXNlcyBwYXJhIGVubGFjZXNcclxuICAgIC5saW5rLWRpdXJubyB7XHJcbiAgICAgIGNvbG9yOiBibGFjazsgLy8gRXN0aWxvcyBkZSBlbmxhY2VzIGVuIG1vZG8gZGl1cm5vXHJcbiAgICB9XHJcblxyXG4gICAgLmxpbmstbm9jdHVybm8ge1xyXG4gICAgICBjb2xvcjogd2hpdGU7IC8vIEVzdGlsb3MgZGUgZW5sYWNlcyBlbiBtb2RvIG5vY3R1cm5vXHJcbiAgICB9XHJcbiAgfVxyXG5cclxuIl19 */";
 
 /***/ }),
 
@@ -340,7 +352,7 @@ module.exports = ".map {\n  position: absolute;\n  height: 100%;\n  width: 100%;
   \*************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-back-button slot=\"start\"></ion-back-button>\r\n    <ion-title>Configuración</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [class.modo-nocturno]=\"modoNocturno\">\r\n  <ion-list>\r\n    <ion-item>\r\n      <ion-label>Modo noche</ion-label>\r\n      <ion-toggle slot=\"end\" (ionChange)=\"toggleTheme($event)\"></ion-toggle>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label>Cuenta</ion-label>\r\n      <ion-router-link [class]=\"getLinkClass()\" routerLink=\"/restaurantes\">Idioma</ion-router-link>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-router-link [class]=\"getLinkClass()\" routerLink=\"/restaurantes\">Acerca de</ion-router-link>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-router-link [class]=\"getLinkClass()\" routerLink=\"/restaurantes\">Actualización de la app</ion-router-link>\r\n    </ion-item>\r\n  </ion-list>\r\n  <ion-button expand=\"block\" (click)=\"logout()\" color=\"danger\" fill=\"outline\">Cerrar sesión</ion-button>\r\n\r\n  <div class=\"map\" #map>\r\n\r\n  </div>\r\n</ion-content>\r\n";
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-back-button slot=\"start\"></ion-back-button>\r\n    <ion-title>Configuración</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [class.modo-nocturno]=\"modoNocturno\">\r\n  <ion-list>\r\n    <ion-item>\r\n      <ion-label>Modo noche</ion-label>\r\n      <ion-toggle slot=\"end\" (ionChange)=\"toggleTheme($event)\" [checked]=\"modoNocturno\"></ion-toggle>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label >Cuenta</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label routerLink=\"/restaurantes\">Idioma</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label routerLink=\"/restaurantes\">Acerca de</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label routerLink=\"/restaurantes\">Actualizacion de App</ion-label>\r\n    </ion-item>\r\n  </ion-list>\r\n  <ion-button expand=\"full\" (click)=\"logout()\" color=\"danger\" >Cerrar sesión</ion-button>\r\n\r\n  <div class=\"map\" #map>\r\n\r\n  </div>\r\n</ion-content>\r\n";
 
 /***/ })
 

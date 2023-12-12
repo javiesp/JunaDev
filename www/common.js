@@ -12,11 +12,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DataService": () => (/* binding */ DataService)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 4505);
 
-// data.service.ts
+
 
 
 
@@ -24,7 +25,20 @@ let DataService = class DataService {
   constructor(storage) {
     this.storage = storage;
     this.isStorageReady = false;
+    this.modoNocturnoSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(false);
     this.initStorage();
+  }
+
+  getModoNocturnoObservable() {
+    return this.modoNocturnoSubject.asObservable();
+  }
+
+  getModoNocturno() {
+    return this.modoNocturnoSubject.value;
+  }
+
+  setModoNocturno(modoNocturno) {
+    this.modoNocturnoSubject.next(modoNocturno);
   } // Inicializa el almacenamiento local
 
 
@@ -84,10 +98,10 @@ let DataService = class DataService {
 };
 
 DataService.ctorParameters = () => [{
-  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__.Storage
+  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_2__.Storage
 }];
 
-DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
   providedIn: 'root'
 })], DataService);
 
