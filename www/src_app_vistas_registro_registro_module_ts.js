@@ -91,13 +91,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RegistroPage": () => (/* binding */ RegistroPage)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro.page.html?ngResource */ 5459);
 /* harmony import */ var _registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro.page.scss?ngResource */ 721);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var src_app_servicios_fireservice_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/fireservice.service */ 944);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notiflix */ 6977);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notiflix__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -117,35 +120,52 @@ let RegistroPage = class RegistroPage {
 
 
   signup() {
-    this.fireService.signup({
-      email: this.email,
-      password: this.password
-    }).then(res => {
-      if (res.user.uid) {
-        let data = {
-          username: this.username,
-          password: this.password,
-          apellido: this.apellido,
-          email: this.email
-        };
-        this.fireService.saveDetails(data).then(res => {
-          this.showSuccessAlert();
-          this.router.navigate(['/login']);
-        }, err => {
-          console.log(err);
-        });
-      }
-    }, err => {
-      this.showErrorAlert(err.message);
-      console.log(err);
-    });
-  }
-
-  showSuccessAlert() {
     var _this = this;
 
     return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this.alertController.create({
+      if (_this.username.length >= 1 && _this.password.length >= 8 && _this.email.includes('@')) {
+        try {
+          const res = yield _this.fireService.signup({
+            email: _this.email,
+            password: _this.password
+          });
+
+          if (res.user.uid) {
+            const data = {
+              username: _this.username,
+              password: _this.password,
+              apellido: _this.apellido,
+              email: _this.email
+            };
+
+            _this.router.navigate(['/menu-principal']);
+
+            notiflix__WEBPACK_IMPORTED_MODULE_4__.Notify.success('Usuario registrado, sesión iniciada correctamente');
+
+            try {
+              yield _this.fireService.saveDetails(data);
+
+              _this.showSuccessAlert();
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        } catch (err) {
+          _this.showErrorAlert('Email existente, por favor inicie sesión o recupere contraseña');
+
+          console.log(err);
+        }
+      } else {
+        yield _this.presentAlert('No se ha guardado el usuario, vuelva a ingresar los datos');
+      }
+    })();
+  }
+
+  showSuccessAlert() {
+    var _this2 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this2.alertController.create({
         header: 'Cuenta creada',
         message: 'Tu cuenta ha sido registrada con éxito.',
         buttons: ['OK']
@@ -155,12 +175,26 @@ let RegistroPage = class RegistroPage {
   }
 
   showErrorAlert(errorMessage) {
-    var _this2 = this;
+    var _this3 = this;
 
     return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this2.alertController.create({
+      const alert = yield _this3.alertController.create({
         header: 'Error al registrar',
         message: errorMessage,
+        buttons: ['OK']
+      });
+      yield alert.present();
+    })();
+  } // Función para mostrar el cuadro de alerta
+
+
+  presentAlert(mensaje) {
+    var _this4 = this;
+
+    return (0,C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this4.alertController.create({
+        header: 'Alerta',
+        message: mensaje,
         buttons: ['OK']
       });
       yield alert.present();
@@ -172,12 +206,12 @@ let RegistroPage = class RegistroPage {
 RegistroPage.ctorParameters = () => [{
   type: src_app_servicios_fireservice_service__WEBPACK_IMPORTED_MODULE_3__.FireserviceService
 }, {
-  type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController
 }];
 
-RegistroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+RegistroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
   selector: 'app-registro',
   template: _registro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [_registro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__]

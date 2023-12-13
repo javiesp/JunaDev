@@ -32,11 +32,11 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("default-node_modules_notiflix_dist_notiflix-aio-3_2_6_min_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/login/login.module */ 1633)).then(m => m.LoginPageModule)
     },
     {
         path: 'registro',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_registro_registro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_angular_fire_fesm2015_angular-fire-compat-database_js"), __webpack_require__.e("default-node_modules_notiflix_dist_notiflix-aio-3_2_6_min_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_vistas_registro_registro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./vistas/registro/registro.module */ 1423)).then(m => m.RegistroPageModule)
     },
     {
         path: 'menu-principal',

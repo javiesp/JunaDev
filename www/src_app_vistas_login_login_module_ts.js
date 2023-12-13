@@ -91,14 +91,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LoginPage": () => (/* binding */ LoginPage)
 /* harmony export */ });
 /* harmony import */ var C_Users_chunc_OneDrive_Documentos_GitHub_JunaExpress_Dev_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.page.html?ngResource */ 2082);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login.page.scss?ngResource */ 4442);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var src_app_servicios_fireservice_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/fireservice.service */ 944);
 /* harmony import */ var src_app_servicios_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/data.service */ 625);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! notiflix */ 6977);
+/* harmony import */ var notiflix__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(notiflix__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -154,6 +157,8 @@ let LoginPage = class LoginPage {
               _this.loadingCtrl.dismiss();
 
               _this.router.navigate(['/menu-principal']);
+
+              notiflix__WEBPACK_IMPORTED_MODULE_5__.Notify.success('Sesión iniciada correctamente');
             });
 
             return function (_x) {
@@ -171,7 +176,7 @@ let LoginPage = class LoginPage {
         if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
           yield _this.presentAlert('Usuario o contraseña incorrectos');
         } else {
-          yield _this.presentAlert('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo más tarde.');
+          yield _this.presentAlert('Email o contraseña incorrectos');
         }
 
         _this.loadingCtrl.dismiss();
@@ -229,20 +234,20 @@ let LoginPage = class LoginPage {
 };
 
 LoginPage.ctorParameters = () => [{
-  type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController
 }, {
   type: src_app_servicios_fireservice_service__WEBPACK_IMPORTED_MODULE_3__.FireserviceService
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController
 }, {
   type: src_app_servicios_data_service__WEBPACK_IMPORTED_MODULE_4__.DataService
 }, {
-  type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ChangeDetectorRef
+  type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ChangeDetectorRef
 }];
 
-LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
   selector: 'app-login',
   template: _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__]

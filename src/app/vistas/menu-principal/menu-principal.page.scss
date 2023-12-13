@@ -129,17 +129,22 @@ ion-header{
   border-radius: 10px;
 }
 
-.map{
+.container12 {
+  width: 100%; /* o cualquier ancho deseado */
+  height: 50vh; /* o cualquier altura deseada */
+  position: relative;
+}
+
+.map {
   position: absolute;
-  height: 50%;
-  width: 70%;
+  height: 75%;
+  width: 88%;
   background-color: transparent;
   opacity: 0;
   transition: opacity 150ms ease-in;
   border-radius: 20px;
   margin: 26px;
   margin-bottom: 100px;
- 
 }
 
 .map.visible{
