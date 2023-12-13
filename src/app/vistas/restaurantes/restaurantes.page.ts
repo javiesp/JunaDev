@@ -19,6 +19,7 @@ export class RestaurantesPage implements OnInit {
   precioMenu: any;
   isModalOpen: boolean;
   uid: string;
+  pedidos: any[] = [];
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private loadingController: LoadingController) {
 
@@ -29,25 +30,35 @@ export class RestaurantesPage implements OnInit {
     return uuidv4();
   }
 
-  //agrega el pedido al carrito junto con sus id
   agregarAlCarrito(usuarioID: string, plato: any, restaurante: string) {
-    const pedidoID = this.generarPedidoID();
-      
-    // Crear un objeto con los detalles del plato
-    const pedido = {
-      platoID: plato.id,
-      nombre: plato.nombre,
-      imagen: plato.img,
-      precio: plato.precio,
-      restaurante: restaurante
-    };
+    // Verificar si el plato ya está en el carrito
+    const pedidoExistente = this.pedidos.find((pedido: any) => pedido.platoID === plato.id);
   
-    const carritoItemRef = this.db.object(`CarritoPedidos/${usuarioID}/${pedidoID}`);
-    carritoItemRef.update({ Pedido: pedido }); // Modifica para que se almacene bajo "Pedido"
-    
-    console.log('ID del pedido:', pedidoID, 'Pedido:', pedido,'user: ', usuarioID);
+    if (pedidoExistente) {
+      // Si el plato ya está en el carrito, actualiza la cantidad y el precio total
+      pedidoExistente.cantidad += 1; // Suponiendo que hay una propiedad "cantidad" en el pedido
+      pedidoExistente.precioTotal += plato.precio; // Suponiendo que hay una propiedad "precioTotal" en el pedido
+      this.actualizarPedidoEnCarrito(usuarioID, pedidoExistente); // Función para actualizar el pedido en el carrito
+    } else {
+      // Si el plato no está en el carrito, crea un nuevo pedido
+      const pedidoID = this.generarPedidoID();
+      const nuevoPedido = {
+        platoID: plato.id,
+        nombre: plato.nombre,
+        imagen: plato.img,
+        precio: plato.precio,
+        restaurante: restaurante,
+        cantidad: 1, // Nueva propiedad para mantener la cantidad
+        precioTotal: plato.precio // Nueva propiedad para mantener el precio total
+      };
+  
+      this.guardarNuevoPedidoEnCarrito(usuarioID, pedidoID, nuevoPedido); // Función para guardar un nuevo pedido en el carrito
+    }
+  
     Notiflix.Notify.success('Agregado al carrito');
   }
+
+  
   
 
 
@@ -105,4 +116,20 @@ export class RestaurantesPage implements OnInit {
   
   
   ngOnInit() {}
+
+
+  guardarNuevoPedidoEnCarrito(usuarioID: string, pedidoID: string, nuevoPedido: any) {
+    const carritoItemRef = this.db.object(`CarritoPedidos/${usuarioID}/${pedidoID}`);
+    carritoItemRef.set({ Pedido: nuevoPedido }); // Set the new order
+    this.pedidos.push(nuevoPedido); // Add the new order to the local array
+  }
+  
+  actualizarPedidoEnCarrito(usuarioID: string, pedidoActualizado: any) {
+    const pedidoIndex = this.pedidos.findIndex((pedido: any) => pedido.platoID === pedidoActualizado.platoID);
+    if (pedidoIndex !== -1) {
+      this.pedidos[pedidoIndex] = pedidoActualizado; // Update the local array
+      const carritoItemRef = this.db.object(`CarritoPedidos/${usuarioID}/${pedidoActualizado.platoID}`);
+      carritoItemRef.update({ Pedido: pedidoActualizado });
+    }
+  }
 }
