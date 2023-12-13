@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FireserviceService } from 'src/app/servicios/fireservice.service';
+import * as Notiflix from 'notiflix';
 
 
 
@@ -25,31 +26,37 @@ export class RegistroPage implements OnInit {
   }
 
   // Esta función se encarga del proceso de registro de un nuevo usuario en la aplicación.
-  signup() {
-    this.fireService.signup({ email: this.email, password: this.password }).then((res) => {
-      if (res.user.uid) {
-        let data = {
-          username: this.username,
-          password: this.password,
-          apellido: this.apellido,
-          email: this.email
-        };
-  
-        this.fireService.saveDetails(data).then(
-          (res) => {
+  async signup() {
+    if (this.username.length >= 1 && this.password.length >= 8 && this.email.includes('@')) {
+      try {
+        const res = await this.fireService.signup({ email: this.email, password: this.password });
+        if (res.user.uid) {
+          const data = {
+            username: this.username,
+            password: this.password,
+            apellido: this.apellido,
+            email: this.email
+            
+          };
+          this.router.navigate(['/menu-principal']);
+          Notiflix.Notify.success('Usuario registrado, sesión iniciada correctamente');
+          try {
+            await this.fireService.saveDetails(data);
             this.showSuccessAlert();
-            this.router.navigate(['/login']);
-          },
-          (err) => {
+
+          } catch (err) {
             console.log(err);
           }
-        );
+        }
+      } catch (err) {
+        this.showErrorAlert('Email existente, por favor inicie sesión o recupere contraseña');
+        console.log(err);
       }
-    }, (err) => {
-      this.showErrorAlert(err.message);
-      console.log(err);
-    });
+    } else {
+      await this.presentAlert('No se ha guardado el usuario, vuelva a ingresar los datos');
+    }
   }
+  
   
   async showSuccessAlert() {
     const alert = await this.alertController.create({
@@ -68,6 +75,16 @@ export class RegistroPage implements OnInit {
       buttons: ['OK']
     });
   
+    await alert.present();
+  }
+
+    // Función para mostrar el cuadro de alerta
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensaje,
+      buttons: ['OK'],
+    });
     await alert.present();
   }
 

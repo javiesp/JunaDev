@@ -4,6 +4,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { FireserviceService } from 'src/app/servicios/fireservice.service';
 import { DataService } from 'src/app/servicios/data.service';
 import { ChangeDetectorRef } from '@angular/core';
+import * as Notiflix from 'notiflix';
 
 
 
@@ -50,6 +51,7 @@ export class LoginPage implements OnInit {
             await this.dataService.guardarUsuario(userData); // Guardar información del usuario en el almacenamiento local
             this.loadingCtrl.dismiss();
             this.router.navigate(['/menu-principal']);
+            Notiflix.Notify.success('Sesión iniciada correctamente');
           },
           (err) => {
             console.log(err);
@@ -63,7 +65,7 @@ export class LoginPage implements OnInit {
       if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
         await this.presentAlert('Usuario o contraseña incorrectos');
       } else {
-        await this.presentAlert('Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo más tarde.');
+        await this.presentAlert('Email o contraseña incorrectos');
       }
       this.loadingCtrl.dismiss();
     }

@@ -80,7 +80,6 @@ export class PedidosPage implements OnInit {
           total = -1;
           if (total = -1) {
             this.saldoFinal = 0;
-            Notiflix.Notify.failure('El total de la compra supera el saldo');
           }
           this.compraValida = false;
           return total; 
